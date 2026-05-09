@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitor Mateus — Fotografia & Vídeo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #fff;
+      --black: #111;
+      --gray-light: #f5f5f5;
+      --gray-mid: #e0e0e0;
+      --gray-text: #888;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--black);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(17,17,17,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    }
+    body.cursor-hover .cursor { width: 12px; height: 12px; }
+    body.cursor-hover .cursor-ring { width: 56px; height: 56px; opacity: 0.5; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      mix-blend-mode: difference;
+    }
+    .nav-logo {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-menu-btn {
+      background: none;
+      border: none;
+      cursor: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .nav-menu-btn span {
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--white);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    /* OVERLAY MENU */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      transform: translateY(-100%);
+      transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    .menu-overlay.open { transform: translateY(0); }
+    .menu-close {
+      position: absolute;
+      top: 28px; right: 48px;
+      background: none;
+      border: none;
+      cursor: none;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .menu-links li {
+      overflow: hidden;
+    }
+    .menu-links a {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: letter-spacing 0.4s ease, color 0.3s ease;
+    }
+    .menu-links a:hover {
+      letter-spacing: 0.04em;
+      color: var(--gray-text);
+    }
+    .menu-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .menu-footer p {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--gray-text);
+      text-transform: uppercase;
+    }
+    .menu-footer a {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .menu-footer a:hover { color: var(--black); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.05);
+      animation: heroZoom 8s ease forwards;
+    }
+    @keyframes heroZoom {
+      to { transform: scale(1); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.08) 0%,
+        rgba(0,0,0,0) 40%,
+        rgba(0,0,0,0.18) 100%
+      );
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 56px;
+    }
+    .hero-name {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 0;
+      width: 100%;
+    }
+    .hero-name-vitor {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 12vw, 160px);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease 0.4s forwards;
+    }
+    .hero-name-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 24px;
+      padding-bottom: 8px;
+    }
+    .hero-name-mateus {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 12vw, 160px);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease 0.6s forwards;
+    }
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      margin-top: 12px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 56px;
+      right: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.4);
+      animation: scrollLine 2s ease-in-out 1.8s infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* SECTIONS */
+    section { padding: 120px 48px; }
+    section:nth-child(even) { background: var(--gray-light); }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 64px;
+      border-bottom: 1px solid var(--gray-mid);
+      padding-bottom: 24px;
+    }
+    .section-number {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      flex: 1;
+    }
+    .section-desc {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 180px;
+      line-height: 1.6;
+    }
+
+    /* GRIDS */
+    .grid-arquitetura {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 240px;
+      gap: 8px;
+    }
+    .grid-arquitetura .g1 { grid-column: span 8; grid-row: span 2; }
+    .grid-arquitetura .g2 { grid-column: span 4; grid-row: span 1; }
+    .grid-arquitetura .g3 { grid-column: span 4; grid-row: span 1; }
+    .grid-arquitetura .g4 { grid-column: span 5; grid-row: span 2; }
+    .grid-arquitetura .g5 { grid-column: span 7; grid-row: span 1; }
+    .grid-arquitetura .g6 { grid-column: span 7; grid-row: span 1; }
+    .grid-arquitetura .g7 { grid-column: span 4; grid-row: span 2; }
+    .grid-arquitetura .g8 { grid-column: span 4; grid-row: span 1; }
+    .grid-arquitetura .g9 { grid-column: span 4; grid-row: span 1; }
+    .grid-arquitetura .g10 { grid-column: span 4; grid-row: span 2; }
+
+    .grid-gastronomia {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 360px;
+      gap: 8px;
+    }
+    .grid-gastronomia .g-wide { grid-column: span 2; }
+
+    .grid-autorais {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .grid-autorais .photo-item { aspect-ratio: 3/4; }
+
+    .grid-retratos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .grid-retratos .photo-item { aspect-ratio: 2/3; }
+
+    .photo-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--gray-mid);
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+      filter: brightness(0.97);
+    }
+    .photo-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1.02);
+    }
+    .photo-item .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 16px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.5));
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .photo-item:hover .photo-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gastronomia grid photos need to fill container */
+    .grid-gastronomia .photo-item,
+    .grid-arquitetura .photo-item {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ABOUT */
+    #sobre {
+      background: var(--black);
+      color: var(--white);
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 40px;
+    }
+    .about-text {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .about-text em {
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+    }
+    .about-info-block {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 24px 0;
+    }
+    .about-info-block:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .about-info-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 8px;
+    }
+    .about-info-value {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    .about-info-value a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.3s;
+    }
+    .about-info-value a:hover { border-color: white; }
+
+    /* CONTACT */
+    #contato {
+      padding: 120px 48px;
+      text-align: center;
+    }
+    .contact-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      margin-bottom: 32px;
+    }
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 120px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+    }
+    .contact-heading em {
+      font-style: italic;
+    }
+    .contact-email {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      padding: 18px 48px;
+      border: 1px solid var(--black);
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+    .contact-email:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--gray-mid);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gray-text);
+      text-transform: uppercase;
+    }
+    .footer-social {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-social a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gray-text);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .footer-social a:hover { color: var(--black); }
+
+    /* FADE IN ON SCROLL */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 24px; }
+      .hero-content { padding: 0 24px 40px; }
+      section { padding: 80px 24px; }
+      #sobre { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+      #contato { padding: 80px 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+      .menu-overlay { padding: 24px; }
+      .menu-close { right: 24px; }
+      .menu-footer { left: 24px; right: 24px; }
+      .section-header { flex-wrap: wrap; }
+      .section-desc { display: none; }
+      .grid-arquitetura {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 200px;
+      }
+      .grid-arquitetura .g1,
+      .grid-arquitetura .g4,
+      .grid-arquitetura .g7,
+      .grid-arquitetura .g10 { grid-column: span 2; }
+      .grid-arquitetura .g2,
+      .grid-arquitetura .g3,
+      .grid-arquitetura .g5,
+      .grid-arquitetura .g6,
+      .grid-arquitetura .g8,
+      .grid-arquitetura .g9 { grid-column: span 1; }
+      .grid-gastronomia { grid-template-columns: 1fr; grid-auto-rows: 280px; }
+      .grid-gastronomia .g-wide { grid-column: span 1; }
+      .grid-autorais { grid-template-columns: 1fr 1fr; }
+      .grid-retratos { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Vitor Mateus</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- OVERLAY MENU -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="menu-close" id="menuClose">Fechar ✕</button>
+    <ul class="menu-links">
+      <li><a href="#arquitetura" class="menu-link">Arquitetura</a></li>
+      <li><a href="#gastronomia" class="menu-link">Gastronomia</a></li>
+      <li><a href="#autorais" class="menu-link">Autorais</a></li>
+      <li><a href="#retratos" class="menu-link">Retratos</a></li>
+      <li><a href="#sobre" class="menu-link">Sobre</a></li>
+      <li><a href="#contato" class="menu-link">Contato</a></li>
+    </ul>
+    <div class="menu-footer">
+      <p>© 2024 Vitor Mateus</p>
+      <div style="display:flex;gap:24px;">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="assets/home/stairs-03.jpg" alt="Vitor Mateus — Fotografia de Arquitetura" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-name">
+        <div class="hero-name-vitor">Vitor</div>
+        <div class="hero-name-right">
+          <div class="hero-name-mateus">Mateus</div>
+          <p class="hero-subtitle">Fotografia e vídeo<br>para arquitetura e gastronomia.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ARQUITETURA -->
+  <section id="arquitetura">
+    <div class="section-header fade-in">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Arquitetura</h2>
+      <p class="section-desc">Espaços que narram<br>a precisão do projeto</p>
+    </div>
+    <div class="grid-arquitetura fade-in">
+      <div class="photo-item g1">
+        <img src="assets/arquitetura/arq-01.jpg" alt="Arquitetura" />
+        <div class="photo-caption">Arquitetura</div>
+      </div>
+      <div class="photo-item g2">
+        <img src="assets/arquitetura/arq-02.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g3">
+        <img src="assets/arquitetura/arq-03.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g4">
+        <img src="assets/arquitetura/arq-04.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g5">
+        <img src="assets/arquitetura/arq-05.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g6">
+        <img src="assets/arquitetura/arq-06.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g7">
+        <img src="assets/arquitetura/arq-07.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g8">
+        <img src="assets/arquitetura/arq-08.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g9">
+        <img src="assets/arquitetura/arq-09.jpg" alt="Arquitetura" />
+      </div>
+      <div class="photo-item g10">
+        <img src="assets/arquitetura/arq-10.jpg" alt="Arquitetura" />
+      </div>
+    </div>
+  </section>
+
+  <!-- GASTRONOMIA -->
+  <section id="gastronomia">
+    <div class="section-header fade-in">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Gastronomia</h2>
+      <p class="section-desc">A textura e o sabor<br>em cada frame</p>
+    </div>
+    <div class="grid-gastronomia fade-in">
+      <div class="photo-item g-wide">
+        <img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg" alt="Cochicho Café" />
+        <div class="photo-caption">Cochicho Café</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/caprese/caprese-01.jpg" alt="Caprese" />
+        <div class="photo-caption">Caprese</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-02.jpg" alt="Cochicho Café" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/tagate/tagate-01.jpg" alt="Tagaté" />
+        <div class="photo-caption">Tagaté</div>
+      </div>
+      <div class="photo-item g-wide">
+        <img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-05.jpg" alt="Cochicho Café" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/ovos/ovos-01.jpg" alt="Ovos" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg" alt="Pain au Chocolat" />
+        <div class="photo-caption">Pain au Chocolat</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/caprese/caprese-02.jpg" alt="Caprese" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/gastronomia/tagate/tagate-03.jpg" alt="Tagaté" />
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORAIS -->
+  <section id="autorais">
+    <div class="section-header fade-in">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Autorais</h2>
+      <p class="section-desc">Olhar pessoal<br>sobre o mundo</p>
+    </div>
+    <div class="grid-autorais fade-in">
+      <div class="photo-item">
+        <img src="assets/autorais/waves-01.jpg" alt="Waves" />
+        <div class="photo-caption">Waves</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/autorais/waves-02.jpg" alt="Waves" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/autorais/waves-03.jpg" alt="Waves" />
+      </div>
+    </div>
+  </section>
+
+  <!-- RETRATOS -->
+  <section id="retratos">
+    <div class="section-header fade-in">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Retratos</h2>
+      <p class="section-desc">Luz e presença<br>no rosto humano</p>
+    </div>
+    <div class="grid-retratos fade-in">
+      <div class="photo-item">
+        <img src="assets/retratos/kenji/kenji-01.jpg" alt="Kenji" />
+        <div class="photo-caption">Kenji</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/retratos/kenji/kenji-02.jpg" alt="Kenji" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/retratos/kenji/kenji-03.jpg" alt="Kenji" />
+      </div>
+      <div class="photo-item">
+        <img src="assets/retratos/kenji/kenji-04.jpg" alt="Kenji" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="fade-in">
+      <p class="about-label">Sobre</p>
+      <p class="about-text">
+        Vitor Mateus é fotógrafo e videomaker especializado em <em>arquitetura e gastronomia.</em>
+        Cada trabalho é uma busca pela imagem que revela a essência do espaço e da experiência.
+      </p>
+    </div>
+    <div class="about-info fade-in">
+      <div class="about-info-block">
+        <p class="about-info-label">Especialidades</p>
+        <p class="about-info-value">Fotografia de Arquitetura<br>Fotografia de Gastronomia<br>Vídeo Corporativo</p>
+      </div>
+      <div class="about-info-block">
+        <p class="about-info-label">Localização</p>
+        <p class="about-info-value">Brasil</p>
+      </div>
+      <div class="about-info-block">
+        <p class="about-info-label">Contato</p>
+        <p class="about-info-value"><a href="mailto:contato@vitormateus.com">contato@vitormateus.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <p class="contact-eyebrow fade-in">Vamos trabalhar juntos</p>
+    <h2 class="contact-heading fade-in">Conte seu<br><em>projeto.</em></h2>
+    <a href="mailto:contato@vitormateus.com" class="contact-email fade-in">contato@vitormateus.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2024 Vitor Mateus — Todos os direitos reservados</p>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .photo-item').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    menuBtn.addEventListener('click', () => {
+      menuOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    menuClose.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Scroll fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Stagger grid children
+    document.querySelectorAll('.grid-arquitetura, .grid-gastronomia, .grid-autorais, .grid-retratos').forEach(grid => {
+      const items = grid.querySelectorAll('.photo-item');
+      items.forEach((item, i) => {
+        item.style.transitionDelay = `${i * 60}ms`;
+      });
+    });
+  </script>
+</body>
+</html>
