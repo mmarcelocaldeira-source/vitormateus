@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -55,7 +55,7 @@
       inset: 0 0 auto;
       z-index: 50;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 24px;
       padding: 24px var(--side);
@@ -85,7 +85,27 @@
     }
 
     .brand { justify-self: start; }
-    .header-note { justify-self: center; white-space: nowrap; opacity: 0.84; }
+    .header-note {
+      position: fixed;
+      left: var(--side);
+      bottom: 28px;
+      z-index: 45;
+      white-space: nowrap;
+      opacity: 0.84;
+      transform: rotate(-90deg);
+      transform-origin: left bottom;
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+
+    .category-nav {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.4vw, 18px);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     .desktop-nav {
       justify-self: end;
@@ -115,6 +135,19 @@
 
     .nav-link:hover { opacity: 1; }
     .nav-link:hover::after { transform: scaleX(1); }
+
+    .category-nav .nav-link {
+      padding: 2px 0 8px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      transition: opacity 220ms ease, color 220ms ease, text-shadow 220ms ease;
+    }
+
+    .category-nav .nav-link:hover {
+      color: rgba(255,250,242,.95);
+      text-shadow: 0 0 10px rgba(255,250,242,.18);
+    }
 
     .menu-toggle { display: none; justify-self: end; padding: 8px 0; cursor: pointer; }
 
@@ -262,6 +295,32 @@
       justify-content: space-between;
       gap: 20px;
       color: rgba(255,250,242,.7);
+    }
+
+    .hero-links {
+      position: absolute;
+      right: var(--side);
+      bottom: 36px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: min(540px, calc(100vw - 2 * var(--side)));
+      justify-content: flex-end;
+      z-index: 3;
+    }
+
+    .hero-links .nav-link {
+      padding: 2px 0 8px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      backdrop-filter: none;
+      transition: opacity 220ms ease, color 220ms ease, text-shadow 220ms ease;
+    }
+
+    .hero-links .nav-link:hover {
+      color: rgba(255,250,242,.95);
+      text-shadow: 0 0 10px rgba(255,250,242,.18);
     }
 
     .intro {
@@ -585,6 +644,7 @@
       }
 
       .header-note,
+      .category-nav,
       .desktop-nav { display: none; }
       .menu-toggle { display: block; }
 
@@ -601,6 +661,7 @@
       }
 
       .hero-aside { max-width: 420px; }
+      .hero-links { display: none; }
       .works-head { grid-template-columns: 1fr; align-items: start; }
       .filters { justify-self: start; justify-content: flex-start; }
       .view-note { text-align: left; }
@@ -642,18 +703,27 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#top">Vitor Mateus</a>
-    <p class="header-note">Fotografia / Vídeo / Direção visual</p>
+    <nav class="category-nav" aria-label="Categorias">
+      <a class="nav-link" href="arquitetura.html">Arquitetura</a>
+      <a class="nav-link" href="gastronomia.html">Gastronomia</a>
+      <a class="nav-link" href="retratos.html">Retratos</a>
+      <a class="nav-link" href="autoriais.html">Autorais</a>
+    </nav>
     <nav class="desktop-nav" aria-label="Navegação principal">
-      <a class="nav-link" href="#trabalhos">Trabalhos</a>
       <a class="nav-link" href="#sobre">Sobre</a>
       <a class="nav-link" href="#contato">Contato</a>
     </nav>
     <button class="menu-toggle" type="button" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
   </header>
 
+  <p class="header-note">Fotografia / Vídeo / Direção visual</p>
+
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegação mobile">
     <button class="menu-close meta" type="button">Fechar</button>
-    <a href="#trabalhos">Trabalhos</a>
+    <a href="arquitetura.html">Arquitetura</a>
+    <a href="gastronomia.html">Gastronomia</a>
+    <a href="retratos.html">Retratos</a>
+    <a href="autoriais.html">Autorais</a>
     <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
@@ -677,14 +747,20 @@
             </div>
           </div>
         </div>
+        <div class="hero-links" aria-label="Atalhos para categorias">
+          <a class="nav-link" href="arquitetura.html">Arquitetura</a>
+          <a class="nav-link" href="gastronomia.html">Gastronomia</a>
+          <a class="nav-link" href="retratos.html">Retratos</a>
+          <a class="nav-link" href="autoriais.html">Autorais</a>
+        </div>
       </div>
     </section>
 
     <section class="intro reveal">
-      <p class="section-kicker">Portfolio selecionado</p>
+      <p class="section-kicker">Portfólio selecionado</p>
       <div>
         <p class="intro-text">Um site mais silencioso, mais cinematográfico e mais seguro da própria imagem. <em>Menos moldura, mais presença.</em></p>
-        <p class="intro-small">A proposta é tratar cada categoria como um ensaio, com ritmo de edição, escala e pausas visuais. A galeria deixa de ser uma grade comum e vira uma sequência curada.</p>
+        <p class="intro-small">A proposta é tratar cada categoria como um ensaio, com ritmo de edição, escala e pausas visuais. A sequência deixa de ser uma grade comum e vira uma curadoria mais precisa.</p>
       </div>
     </section>
 
@@ -907,3 +983,5 @@
   </script>
 </body>
 </html>
+
+
