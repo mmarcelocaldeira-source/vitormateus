@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "WebFetch(domain:www.vitormateus.studio)",
+      "Bash(mv \"assets/gastronomia/COCHICHO CAFÉ\" \"assets/gastronomia/cochicho-cafe\")",
+      "Bash(mv \"assets/gastronomia/PAIN AU CHOCOLAT\" \"assets/gastronomia/pain-au-chocolat\")",
+      "Bash(mv \"assets/gastronomia/TAGATÉ\" \"assets/gastronomia/tagate\")",
+      "Bash(mv \"assets/gastronomia/CAPRESE\" \"assets/gastronomia/caprese\")",
+      "Bash(mv \"assets/gastronomia/OVOS\" \"assets/gastronomia/ovos\")",
+      "Bash(mv \"assets/gastronomia/BAUDUCCO\" \"assets/gastronomia/bauducco\")",
+      "Bash(mv \"assets/retratos/KENJI\" \"assets/retratos/kenji\")",
+      "Bash(mv \"assets/autorais/WAVES_VITORMATEUS_01.jpg\" \"assets/autorais/waves-01.jpg\")",
+      "Bash(mv \"assets/autorais/WAVES_VITORMATEUS_02.jpg\" \"assets/autorais/waves-02.jpg\")",
+      "Bash(mv \"assets/autorais/WAVES_VITORMATEUS_03.jpg\" \"assets/autorais/waves-03.jpg\")",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -s https://www.xrysitomi.gr/)",
+      "Bash(curl -s https://www.xrysitomi.gr/wp-content/themes/xrysi_tomi/styles/css/main.css)",
+      "Bash(sed -n '1,/<\\\\/head>/p')",
+      "Read(//tmp/**)",
+      "Bash(curl -s https://www.xrysitomi.gr/wp-content/themes/xrysi_tomi/dist/app-dep.min.1.0.1.js)",
+      "Bash(curl -s https://www.xrysitomi.gr/wp-content/themes/xrysi_tomi/dist/app.min.1.0.2.js)",
+      "Bash(curl -L -o \"c:/Users/marce/Documents/SITE VITOR/assets/fonts/CFModGroteskRegular.woff2\" \"https://www.xrysitomi.gr/wp-content/themes/xrysi_tomi/fonts/CFModGroteskRegular.woff2\")",
+      "Bash(curl -L -o \"c:/Users/marce/Documents/SITE VITOR/assets/fonts/CFModGroteskRegular.woff\" \"https://www.xrysitomi.gr/wp-content/themes/xrysi_tomi/fonts/CFModGroteskRegular.woff\")",
+      "Read(//c/Users/marce/Documents/vitor-mateus/**)",
+      "Bash(npm install *)",
+      "Bash(PYTHONIOENCODING=utf-8 python \"C:/Users/marce/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"photography portfolio architecture gastronomy editorial minimal luxury\" --design-system -p \"Vitor Mateus Portfolio\")",
+      "Bash(npm run *)"
+    ]
+  }
+}
