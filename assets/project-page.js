@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const app = document.getElementById("app");
   const params = new URLSearchParams(location.search);
   const activeCategory = params.get("categoria") || "gastronomia";
@@ -18,7 +18,7 @@
           type: "residencial",
           description: "Ensaio de residência contemporânea com ênfase em circulação, luz lateral e acabamento.",
           cover: "assets/arquitetura/arq-01.jpg",
-          gallery: ["arq-01.jpg", "arq-02.jpg", "arq-03.jpg"].map(file => `assets/arquitetura/${file}`)
+          gallery: ["arq-01.jpg", "arq-02.jpg", "arq-03.jpg"].map(f => `assets/arquitetura/${f}`)
         },
         {
           slug: "escada-norte",
@@ -29,7 +29,7 @@
           type: "circulação",
           description: "Uma sequência sobre eixo vertical, ritmo e silêncio visual em ambiente interno.",
           cover: "assets/arquitetura/arq-04.jpg",
-          gallery: ["arq-04.jpg", "arq-05.jpg", "arq-06.jpg"].map(file => `assets/arquitetura/${file}`)
+          gallery: ["arq-04.jpg", "arq-05.jpg", "arq-06.jpg"].map(f => `assets/arquitetura/${f}`)
         },
         {
           slug: "patio-monolito",
@@ -40,7 +40,7 @@
           type: "textura e massa",
           description: "Blocos, cortes de sombra e materialidade em uma leitura mais gráfica da arquitetura.",
           cover: "assets/arquitetura/arq-07.jpg",
-          gallery: ["arq-07.jpg", "arq-08.jpg", "arq-09.jpg", "arq-10.jpg"].map(file => `assets/arquitetura/${file}`)
+          gallery: ["arq-07.jpg", "arq-08.jpg", "arq-09.jpg", "arq-10.jpg"].map(f => `assets/arquitetura/${f}`)
         }
       ]
     },
@@ -57,7 +57,7 @@
           type: "campanha",
           description: "Série de campanha com close, vapor, crema e composição de bancada.",
           cover: "assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg",
-          gallery: Array.from({ length: 15 }, (_, index) => `assets/gastronomia/cochicho-cafe/cochicho-cafe-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 15 }, (_, i) => `assets/gastronomia/cochicho-cafe/cochicho-cafe-${String(i + 1).padStart(2, "0")}.jpg`)
         },
         {
           slug: "caprese",
@@ -68,7 +68,7 @@
           type: "food styling",
           description: "Uma leitura mais gráfica e limpa da mesa, com cor e repetição de forma.",
           cover: "assets/gastronomia/caprese/caprese-01.jpg",
-          gallery: Array.from({ length: 5 }, (_, index) => `assets/gastronomia/caprese/caprese-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 5 }, (_, i) => `assets/gastronomia/caprese/caprese-${String(i + 1).padStart(2, "0")}.jpg`)
         },
         {
           slug: "tagate",
@@ -79,7 +79,7 @@
           type: "menu visual",
           description: "Projeto mais amplo, com sequência de produto, mesa e leitura de marca.",
           cover: "assets/gastronomia/tagate/tagate-01.jpg",
-          gallery: Array.from({ length: 8 }, (_, index) => `assets/gastronomia/tagate/tagate-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 8 }, (_, i) => `assets/gastronomia/tagate/tagate-${String(i + 1).padStart(2, "0")}.jpg`)
         },
         {
           slug: "pain-au-chocolat",
@@ -90,7 +90,7 @@
           type: "produto",
           description: "Linha curta e elegante para um produto com foco em crocância, brilho e repetição.",
           cover: "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg",
-          gallery: Array.from({ length: 4 }, (_, index) => `assets/gastronomia/pain-au-chocolat/pain-au-chocolat-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 4 }, (_, i) => `assets/gastronomia/pain-au-chocolat/pain-au-chocolat-${String(i + 1).padStart(2, "0")}.jpg`)
         }
       ]
     },
@@ -107,7 +107,7 @@
           type: "estudo de rosto",
           description: "Primeira sequência com leitura mais contida, fundo simples e foco na expressão.",
           cover: "assets/retratos/kenji/kenji-01.jpg",
-          gallery: [1, 2, 3, 4].map(number => `assets/retratos/kenji/kenji-${String(number).padStart(2, "0")}.jpg`)
+          gallery: [1, 2, 3, 4].map(n => `assets/retratos/kenji/kenji-${String(n).padStart(2, "0")}.jpg`)
         },
         {
           slug: "kenji-02",
@@ -118,7 +118,7 @@
           type: "movimento",
           description: "Mais gesto, mais deslocamento e uma aproximação editorial da figura.",
           cover: "assets/retratos/kenji/kenji-05.jpg",
-          gallery: [5, 6, 7, 8].map(number => `assets/retratos/kenji/kenji-${String(number).padStart(2, "0")}.jpg`)
+          gallery: [5, 6, 7, 8].map(n => `assets/retratos/kenji/kenji-${String(n).padStart(2, "0")}.jpg`)
         },
         {
           slug: "kenji-03",
@@ -129,7 +129,7 @@
           type: "fechamento",
           description: "Uma série de fechamento mais limpa e direta, com foco em textura e postura.",
           cover: "assets/retratos/kenji/kenji-09.jpg",
-          gallery: [9, 10, 11, 12].map(number => `assets/retratos/kenji/kenji-${String(number).padStart(2, "0")}.jpg`)
+          gallery: [9, 10, 11, 12].map(n => `assets/retratos/kenji/kenji-${String(n).padStart(2, "0")}.jpg`)
         }
       ]
     },
@@ -146,7 +146,7 @@
           type: "repetição",
           description: "Exploração de forma e movimento com pouca informação e uma leitura quase abstrata.",
           cover: "assets/autorais/waves-01.jpg",
-          gallery: ["waves-01.jpg", "waves-02.jpg", "waves-03.jpg"].map(file => `assets/autorais/${file}`)
+          gallery: ["waves-01.jpg", "waves-02.jpg", "waves-03.jpg"].map(f => `assets/autorais/${f}`)
         },
         {
           slug: "buenos-aires-2022",
@@ -157,7 +157,7 @@
           type: "cidade",
           description: "Cenas urbanas com luz de rua, deslocamento e uma sensação documental mais aberta.",
           cover: "assets/autorais/buenos-aires-2022/buenos-aires-01.jpg",
-          gallery: Array.from({ length: 5 }, (_, index) => `assets/autorais/buenos-aires-2022/buenos-aires-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 5 }, (_, i) => `assets/autorais/buenos-aires-2022/buenos-aires-${String(i + 1).padStart(2, "0")}.jpg`)
         },
         {
           slug: "portra-160",
@@ -168,7 +168,7 @@
           type: "filme",
           description: "Uma sequência mais suave, com clima de memória e granulação discreta.",
           cover: "assets/autorais/portra-160/portra160-01.jpg",
-          gallery: Array.from({ length: 9 }, (_, index) => `assets/autorais/portra-160/portra160-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 9 }, (_, i) => `assets/autorais/portra-160/portra160-${String(i + 1).padStart(2, "0")}.jpg`)
         },
         {
           slug: "kodak-gold-200",
@@ -179,27 +179,44 @@
           type: "cor",
           description: "Linguagem mais quente e solar, com foco em cor, recorte e atmosfera.",
           cover: "assets/autorais/kodak-gold-200/kodak-gold200-01.jpg",
-          gallery: Array.from({ length: 17 }, (_, index) => `assets/autorais/kodak-gold-200/kodak-gold200-${String(index + 1).padStart(2, "0")}.jpg`)
+          gallery: Array.from({ length: 17 }, (_, i) => `assets/autorais/kodak-gold-200/kodak-gold200-${String(i + 1).padStart(2, "0")}.jpg`)
         }
       ]
     }
   };
 
   const category = categories[activeCategory];
-  const project = category?.projects.find(item => item.slug === activeProject) || category?.projects[0];
+  const project = category?.projects.find(p => p.slug === activeProject) || category?.projects[0];
 
-  const projectHref = item => `projeto.html?categoria=${encodeURIComponent(activeCategory)}&projeto=${encodeURIComponent(item.slug)}`;
+  const projectHref = item =>
+    `projeto.html?categoria=${encodeURIComponent(activeCategory)}&projeto=${encodeURIComponent(item.slug)}`;
+
   const isVideo = src => /\.(mp4|webm|mov)$/i.test(src);
-  const mediaType = src => isVideo(src) ? "video" : "image";
+
+  // Gallery layout: editorial rhythm
+  const layoutPatterns = [
+    "gallery__item gallery__item--wide",
+    "gallery__item",
+    "gallery__item",
+    "gallery__item gallery__item--full",
+    "gallery__item",
+    "gallery__item gallery__item--wide",
+    "gallery__item",
+    "gallery__item",
+    "gallery__item gallery__item--half",
+    "gallery__item gallery__item--half",
+  ];
+
+  const getClass = index => layoutPatterns[index % layoutPatterns.length];
 
   const renderMedia = (src, index) => {
-    const className = index % 7 === 0 ? "gallery__item gallery__item--wide" : index % 5 === 0 ? "gallery__item gallery__item--tall" : "gallery__item";
+    const cls = getClass(index);
     const media = isVideo(src)
       ? `<video src="${src}" muted playsinline preload="metadata"></video>`
-      : `<img src="${src}" alt="${project.title} - imagem ${index + 1}" loading="lazy" />`;
+      : `<img src="${src}" alt="${project.title} — ${index + 1}" loading="${index < 3 ? "eager" : "lazy"}" />`;
 
     return `
-      <button class="${className}" type="button" data-src="${src}" data-type="${mediaType(src)}" data-alt="${project.title} - imagem ${index + 1}">
+      <button class="${cls}" type="button" data-src="${src}" data-type="${isVideo(src) ? "video" : "image"}" data-index="${index}" aria-label="Abrir imagem ${index + 1}">
         ${media}
       </button>
     `;
@@ -209,90 +226,96 @@
     app.innerHTML = `
       <main class="not-found">
         <p class="eyebrow">Projeto não encontrado</p>
-        <a href="index.html">Voltar ao início</a>
-      </main>
-    `;
+        <a href="index.html">← Voltar ao início</a>
+      </main>`;
     return;
   }
 
-  const projectIndex = category.projects.map(item => `
-    <a class="${item.slug === project.slug ? "is-current" : ""}" href="${projectHref(item)}">${item.title}</a>
+  document.title = `${project.title} — Vitor Mateus`;
+
+  const projectNav = category.projects.map(item => `
+    <a class="${item.slug === project.slug ? "is-current" : ""}" href="${projectHref(item)}" data-transition>${item.title}</a>
   `).join("");
 
-  document.title = `${project.title} - Vitor Mateus`;
-
   app.innerHTML = `
-    <div class="page">
-      <header class="topbar">
-        <a class="topbar__brand" href="index.html">Vitor Mateus</a>
-        <nav class="topbar__nav" aria-label="Categorias">
-          <a href="arquitetura.html">Arquitetura</a>
-          <a href="gastronomia.html">Gastronomia</a>
-          <a href="retratos.html">Retratos</a>
-          <a href="autoriais.html">Autorais</a>
+    <div class="page-transition"></div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="index.html" data-transition>Vitor Mateus</a>
+      <nav class="topbar__nav" aria-label="Categorias">
+        <a href="arquitetura.html" data-transition>Arquitetura</a>
+        <a href="gastronomia.html" data-transition>Gastronomia</a>
+        <a href="retratos.html" data-transition>Retratos</a>
+        <a href="autoriais.html" data-transition>Autorais</a>
+      </nav>
+      <a class="topbar__back" href="${category.href}" data-transition>← ${category.label}</a>
+    </header>
+
+    <main>
+      <section class="project-hero">
+        <div class="project-hero__title">
+          <p class="eyebrow">${category.label} — ${project.type}</p>
+          <h1>${project.title}</h1>
+          <p class="project-hero__desc">${project.description}</p>
+        </div>
+
+        <dl class="technical-sheet" aria-label="Ficha técnica">
+          <div><dt>Cliente</dt><dd>${project.client}</dd></div>
+          <div><dt>Data</dt><dd>${project.date}</dd></div>
+          <div><dt>Local</dt><dd>${project.location}</dd></div>
+          <div><dt>Tipo</dt><dd>${project.type}</dd></div>
+        </dl>
+
+        <div class="project-hero__cover">
+          <img src="${project.cover}" alt="${project.title}" />
+        </div>
+      </section>
+
+      <div class="gallery-nav">
+        <span class="gallery-nav__label eyebrow">Galeria — ${project.gallery.length} imagens</span>
+        <nav aria-label="Outros projetos em ${category.label}">
+          ${projectNav}
         </nav>
-        <a class="topbar__home" href="${category.href}">Voltar</a>
-      </header>
+      </div>
 
-      <main>
-        <section class="project-hero">
-          <div class="project-hero__title">
-            <p class="eyebrow">${category.label}</p>
-            <h1>${project.title}</h1>
-            <p>${project.description}</p>
-          </div>
+      <section class="gallery" aria-label="Galeria de ${project.title}">
+        ${project.gallery.map(renderMedia).join("")}
+      </section>
+    </main>
 
-          <dl class="technical-sheet" aria-label="Ficha técnica">
-            <div>
-              <dt>Cliente</dt>
-              <dd>${project.client}</dd>
-            </div>
-            <div>
-              <dt>Data</dt>
-              <dd>${project.date}</dd>
-            </div>
-            <div>
-              <dt>Local</dt>
-              <dd>${project.location}</dd>
-            </div>
-            <div>
-              <dt>Tipo</dt>
-              <dd>${project.type}</dd>
-            </div>
-          </dl>
-
-          <div class="project-hero__cover">
-            <img src="${project.cover}" alt="${project.title}" />
-          </div>
-        </section>
-
-        <section class="gallery-head">
-          <p class="eyebrow">Galeria</p>
-          <nav aria-label="Projetos em ${category.label}">
-            ${projectIndex}
-          </nav>
-        </section>
-
-        <section class="gallery" aria-label="Galeria de ${project.title}">
-          ${project.gallery.map(renderMedia).join("")}
-        </section>
-      </main>
-    </div>
-
-    <div class="lightbox" aria-hidden="true">
+    <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Visualização ampliada">
       <button class="lightbox__close eyebrow" type="button">Fechar</button>
+      <button class="lightbox__prev" type="button" aria-label="Imagem anterior">&#8592;</button>
+      <button class="lightbox__next" type="button" aria-label="Próxima imagem">&#8594;</button>
       <div class="lightbox__media"></div>
+      <span class="lightbox__count"></span>
     </div>
   `;
 
+  // ─── Lightbox ───
   const lightbox = document.querySelector(".lightbox");
   const lightboxMedia = document.querySelector(".lightbox__media");
-  const closeButton = document.querySelector(".lightbox__close");
+  const closeBtn = document.querySelector(".lightbox__close");
+  const prevBtn = document.querySelector(".lightbox__prev");
+  const nextBtn = document.querySelector(".lightbox__next");
+  const countEl = document.querySelector(".lightbox__count");
+  const galleryItems = [...document.querySelectorAll(".gallery__item")];
 
-  const openLightbox = (src, alt, type) => {
-    lightboxMedia.innerHTML = type === "video"
+  let currentIndex = 0;
+
+  const showSlide = index => {
+    const total = project.gallery.length;
+    currentIndex = (index + total) % total;
+    const src = project.gallery[currentIndex];
+    const isVid = isVideo(src);
+    lightboxMedia.innerHTML = isVid
       ? `<video src="${src}" controls autoplay playsinline></video>`
-      : `<img src="${src}" alt="${alt}" />`;
+      : `<img src="${src}" alt="${project.title} — ${currentIndex + 1}" />`;
+    countEl.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  };
+
+  const openLightbox = index => {
+    showSlide(index);
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -305,17 +328,44 @@
     document.body.style.overflow = "";
   };
 
-  app.addEventListener("click", event => {
-    const trigger = event.target.closest("[data-src]");
+  app.addEventListener("click", e => {
+    const trigger = e.target.closest("[data-src]");
     if (!trigger) return;
-    openLightbox(trigger.dataset.src, trigger.dataset.alt || "", trigger.dataset.type || "image");
+    openLightbox(parseInt(trigger.dataset.index, 10) || 0);
   });
 
-  closeButton.addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", event => {
-    if (event.target === lightbox) closeLightbox();
+  closeBtn.addEventListener("click", closeLightbox);
+  prevBtn.addEventListener("click", () => showSlide(currentIndex - 1));
+  nextBtn.addEventListener("click", () => showSlide(currentIndex + 1));
+
+  lightbox.addEventListener("click", e => {
+    if (e.target === lightbox) closeLightbox();
   });
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") closeLightbox();
+
+  document.addEventListener("keydown", e => {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showSlide(currentIndex - 1);
+    if (e.key === "ArrowRight") showSlide(currentIndex + 1);
   });
+
+  // ─── Page Transitions ───
+  const transition = document.querySelector(".page-transition");
+
+  const navigateTo = href => {
+    transition.classList.add("is-entering");
+    transition.addEventListener("animationend", () => {
+      window.location.href = href;
+    }, { once: true });
+  };
+
+  document.querySelectorAll("[data-transition]").forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#") || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      navigateTo(href);
+    });
+  });
+
 })();

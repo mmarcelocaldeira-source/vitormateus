@@ -41,6 +41,25 @@
       text-rendering: geometricPrecision;
     }
 
+    /* ─── Page Transition ─── */
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: var(--ink);
+      transform: translateY(100%);
+      pointer-events: none;
+    }
+
+    .page-transition.is-entering {
+      animation: curtain-in 600ms cubic-bezier(.76, 0, .24, 1) forwards;
+    }
+
+    @keyframes curtain-in {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0%); }
+    }
+
     img, video { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; color: inherit; }
@@ -359,48 +378,130 @@
     }
 
     .works-head {
-      position: sticky;
-      top: 0;
-      z-index: 10;
       display: grid;
       grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 24px;
-      padding: 18px 0;
-      margin-bottom: 18px;
-      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      align-items: end;
+      gap: 32px;
+      padding: 28px 0 44px;
       border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
+      margin-bottom: 28px;
     }
 
-    .filters {
+    .works-head .section-kicker { padding-top: 18px; }
+
+    .works-headline {
       justify-self: center;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .filter-button {
-      min-height: 34px;
-      padding: 0 13px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
-    }
-
-    .filter-button:hover,
-    .filter-button.is-active {
-      border-color: var(--line);
-      background: rgba(17,17,15,.035);
-      color: var(--ink);
+      max-width: 620px;
+      font-family: var(--display);
+      font-size: clamp(22px, 2.4vw, 34px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      text-align: center;
     }
 
     .view-note { color: var(--muted); text-align: right; }
+
+    .category-rail {
+      display: flex;
+      gap: 10px;
+      height: clamp(440px, 62vh, 640px);
+      width: 100%;
+    }
+
+    .cat-panel {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      transition: flex-grow 720ms cubic-bezier(.2,.7,.2,1);
+      cursor: pointer;
+    }
+
+    .cat-bg {
+      position: absolute;
+      inset: 0;
+      background-image: var(--cat-img);
+      background-size: cover;
+      background-position: center;
+      filter: brightness(.55) saturate(.95);
+      transform: scale(1.04);
+      transition: filter 600ms ease, transform 900ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    .cat-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%);
+      pointer-events: none;
+    }
+
+    .cat-num {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      min-width: 36px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-align: center;
+    }
+
+    .cat-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 36px;
+      z-index: 3;
+      padding: 0 22px;
+      text-align: center;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .cat-title {
+      font-family: var(--display);
+      font-size: clamp(20px, 1.8vw, 28px);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cat-copy {
+      max-width: 420px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.82);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 380ms ease 80ms, transform 420ms ease 80ms;
+    }
+
+    .cat-cta {
+      color: var(--paper);
+      border-bottom: 1px solid rgba(255,255,255,.55);
+      padding-bottom: 4px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 380ms ease 160ms, transform 420ms ease 160ms;
+    }
+
+    .category-rail:hover .cat-panel { flex-grow: 0.6; }
+    .category-rail .cat-panel:hover { flex-grow: 3.4; }
+
+    .cat-panel:hover .cat-bg { filter: brightness(.75) saturate(1); transform: scale(1); }
+    .cat-panel:hover .cat-copy,
+    .cat-panel:hover .cat-cta { opacity: 1; transform: translateY(0); }
 
     .project {
       display: grid;
@@ -662,11 +763,23 @@
 
       .hero-aside { max-width: 420px; }
       .hero-links { display: none; }
-      .works-head { grid-template-columns: 1fr; align-items: start; }
-      .filters { justify-self: start; justify-content: flex-start; }
+      .works-head { grid-template-columns: 1fr; align-items: start; gap: 14px; }
+      .works-headline { justify-self: start; text-align: left; }
       .view-note { text-align: left; }
       .project-info { position: static; min-height: auto; }
       .project-copy { max-width: 520px; }
+
+      .category-rail {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+      }
+      .cat-panel { height: 180px; }
+      .category-rail:hover .cat-panel { flex-grow: 1; }
+      .category-rail .cat-panel:hover { flex-grow: 1; }
+      .cat-panel .cat-copy { opacity: 1; transform: none; max-width: 90%; }
+      .cat-panel .cat-cta { opacity: 1; transform: none; }
+      .cat-body { bottom: 22px; }
     }
 
     @media (max-width: 680px) {
@@ -701,6 +814,8 @@
   </style>
 </head>
 <body>
+  <div class="page-transition"></div>
+
   <header class="site-header">
     <a class="brand" href="#top">Vitor Mateus</a>
     <nav class="category-nav" aria-label="Categorias">
@@ -747,96 +862,65 @@
             </div>
           </div>
         </div>
-        <div class="hero-links" aria-label="Atalhos para categorias">
-          <a class="nav-link" href="arquitetura.html">Arquitetura</a>
-          <a class="nav-link" href="gastronomia.html">Gastronomia</a>
-          <a class="nav-link" href="retratos.html">Retratos</a>
-          <a class="nav-link" href="autoriais.html">Autorais</a>
-        </div>
       </div>
     </section>
 
     <section class="intro reveal">
       <p class="section-kicker">Portfólio selecionado</p>
       <div>
-        <p class="intro-text">Um site mais silencioso, mais cinematográfico e mais seguro da própria imagem. <em>Menos moldura, mais presença.</em></p>
-        <p class="intro-small">A proposta é tratar cada categoria como um ensaio, com ritmo de edição, escala e pausas visuais. A sequência deixa de ser uma grade comum e vira uma curadoria mais precisa.</p>
+        <p class="intro-text">Direção visual para marcas, espaços e pessoas. <em>Imagens precisas, edição contida, presença.</em></p>
+        <p class="intro-small">Quatro territórios, uma mesma linguagem: arquitetura, gastronomia, retratos e autorais. Cada categoria é um ensaio com ritmo próprio.</p>
       </div>
     </section>
 
     <section class="works" id="trabalhos">
       <div class="works-head">
         <p class="section-kicker">Trabalhos</p>
-        <div class="filters" aria-label="Filtrar trabalhos">
-          <button class="filter-button is-active" type="button" data-filter="all">Todos</button>
-          <button class="filter-button" type="button" data-filter="arquitetura">Arquitetura</button>
-          <button class="filter-button" type="button" data-filter="gastronomia">Gastronomia</button>
-          <button class="filter-button" type="button" data-filter="autorais">Autorais</button>
-          <button class="filter-button" type="button" data-filter="retratos">Retratos</button>
-        </div>
-        <p class="view-note meta">Clique para ampliar</p>
+        <p class="works-headline">Quatro territórios, uma <em>mesma direção visual.</em></p>
+        <p class="view-note meta">Passe o mouse para expandir</p>
       </div>
 
-      <article class="project reveal" data-category="arquitetura">
-        <div class="project-info">
-          <p class="project-number">01 / Arquitetura</p>
-          <h2 class="project-title">Espaço em movimento</h2>
-          <p class="project-copy">Linhas limpas, matéria, circulação e silêncio. A fotografia de arquitetura entra aqui como leitura de atmosfera, não apenas registro.</p>
-          <a class="project-link meta" href="#contato">Solicitar projeto</a>
-        </div>
-        <div class="project-grid">
-          <button class="shot is-full" type="button"><img src="assets/arquitetura/arq-01.jpg" alt="Escada arquitetônica com pessoa em movimento" /></button>
-          <button class="shot is-tall" type="button"><img src="assets/arquitetura/arq-04.jpg" alt="Detalhe arquitetônico" /></button>
-          <button class="shot is-wide" type="button"><img src="assets/arquitetura/arq-02.jpg" alt="Interior arquitetônico" /></button>
-          <button class="shot is-half" type="button"><img src="assets/arquitetura/arq-07.jpg" alt="Composição de arquitetura" /></button>
-          <button class="shot is-half" type="button"><img src="assets/arquitetura/arq-10.jpg" alt="Ambiente arquitetônico" /></button>
-        </div>
-      </article>
+      <div class="category-rail reveal">
+        <a class="cat-panel" href="arquitetura.html" data-category="arquitetura" style="--cat-img:url('assets/arquitetura/arq-01.jpg')">
+          <span class="cat-bg"></span>
+          <span class="cat-num">01</span>
+          <div class="cat-body">
+            <h2 class="cat-title">Arquitetura</h2>
+            <p class="cat-copy">Linhas limpas, matéria, circulação e silêncio. Leitura de atmosfera, não apenas registro.</p>
+            <span class="cat-cta meta">Ver projetos →</span>
+          </div>
+        </a>
 
-      <article class="project reveal" data-category="gastronomia">
-        <div class="project-info">
-          <p class="project-number">02 / Gastronomia</p>
-          <h2 class="project-title">Textura antes do sabor</h2>
-          <p class="project-copy">Uma direção visual mais táctil: luz dura quando precisa, cor real, composição gráfica e vontade de chegar perto.</p>
-          <a class="project-link meta" href="#contato">Solicitar projeto</a>
-        </div>
-        <div class="project-grid">
-          <button class="shot is-wide" type="button"><img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg" alt="Sobremesa com matcha e cacau" /></button>
-          <button class="shot is-tall" type="button"><img src="assets/gastronomia/caprese/caprese-01.jpg" alt="Prato caprese" /></button>
-          <button class="shot is-square" type="button"><img src="assets/gastronomia/tagate/tagate-01.jpg" alt="Prato Tagaté" /></button>
-          <button class="shot is-half" type="button"><img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-05.jpg" alt="Cena de café" /></button>
-          <button class="shot is-half" type="button"><img src="assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg" alt="Pain au chocolat" /></button>
-        </div>
-      </article>
+        <a class="cat-panel" href="gastronomia.html" data-category="gastronomia" style="--cat-img:url('assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg')">
+          <span class="cat-bg"></span>
+          <span class="cat-num">02</span>
+          <div class="cat-body">
+            <h2 class="cat-title">Gastronomia</h2>
+            <p class="cat-copy">Direção visual táctil: luz dura quando precisa, cor real, composição gráfica e vontade de chegar perto.</p>
+            <span class="cat-cta meta">Ver projetos →</span>
+          </div>
+        </a>
 
-      <article class="project reveal" data-category="autorais">
-        <div class="project-info">
-          <p class="project-number">03 / Autorais</p>
-          <h2 class="project-title">Imagem como pausa</h2>
-          <p class="project-copy">A área autoral funciona como respiro no site. Poucas fotos, grandes, com espaço para o visitante ficar nelas.</p>
-          <a class="project-link meta" href="#contato">Conversar</a>
-        </div>
-        <div class="project-grid">
-          <button class="shot is-half" type="button"><img src="assets/autorais/waves-01.jpg" alt="Projeto autoral Waves" /></button>
-          <button class="shot is-half" type="button"><img src="assets/autorais/waves-02.jpg" alt="Projeto autoral Waves" /></button>
-          <button class="shot is-full" type="button"><img src="assets/autorais/waves-03.jpg" alt="Projeto autoral Waves" /></button>
-        </div>
-      </article>
+        <a class="cat-panel" href="autorais.html" data-category="autorais" style="--cat-img:url('assets/autorais/waves-03.jpg')">
+          <span class="cat-bg"></span>
+          <span class="cat-num">03</span>
+          <div class="cat-body">
+            <h2 class="cat-title">Autorais</h2>
+            <p class="cat-copy">Respiro no site. Poucas fotos, grandes, com espaço para o visitante ficar nelas.</p>
+            <span class="cat-cta meta">Ver projetos →</span>
+          </div>
+        </a>
 
-      <article class="project reveal" data-category="retratos">
-        <div class="project-info">
-          <p class="project-number">04 / Retratos</p>
-          <h2 class="project-title">Presença sem excesso</h2>
-          <p class="project-copy">Retratos com direção contida, luz bem desenhada e edição curta. O resultado fica mais premium porque não tenta mostrar tudo de uma vez.</p>
-          <a class="project-link meta" href="#contato">Agendar sessão</a>
-        </div>
-        <div class="project-grid">
-          <button class="shot is-tall" type="button"><img src="assets/retratos/kenji/kenji-01.jpg" alt="Retrato de Kenji" /></button>
-          <button class="shot is-wide" type="button"><img src="assets/retratos/kenji/kenji-03.jpg" alt="Retrato editorial de Kenji" /></button>
-          <button class="shot is-half" type="button"><img src="assets/retratos/kenji/kenji-06.jpg" alt="Retrato em luz natural" /></button>
-          <button class="shot is-half" type="button"><img src="assets/retratos/kenji/kenji-10.jpg" alt="Retrato em composição minimalista" /></button>
-        </div>
-      </article>
+        <a class="cat-panel" href="retratos.html" data-category="retratos" style="--cat-img:url('assets/retratos/kenji/kenji-03.jpg')">
+          <span class="cat-bg"></span>
+          <span class="cat-num">04</span>
+          <div class="cat-body">
+            <h2 class="cat-title">Retratos</h2>
+            <p class="cat-copy">Direção contida, luz bem desenhada, edição curta. Premium porque não tenta mostrar tudo de uma vez.</p>
+            <span class="cat-cta meta">Ver projetos →</span>
+          </div>
+        </a>
+      </div>
     </section>
 
     <section class="about" id="sobre">
@@ -980,6 +1064,27 @@
         setMenu(false);
       }
     });
+
+    // ─── Page Transitions ───
+    const pageTransition = document.querySelector(".page-transition");
+
+    const navigateTo = href => {
+      pageTransition.classList.add("is-entering");
+      pageTransition.addEventListener("animationend", () => {
+        window.location.href = href;
+      }, { once: true });
+    };
+
+    document.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto") || href.startsWith("tel")) return;
+      link.addEventListener("click", e => {
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        navigateTo(href);
+      });
+    });
+
   </script>
 </body>
 </html>

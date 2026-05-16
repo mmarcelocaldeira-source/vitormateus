@@ -25,7 +25,10 @@
       "Read(//c/Users/marce/Documents/vitor-mateus/**)",
       "Bash(npm install *)",
       "Bash(PYTHONIOENCODING=utf-8 python \"C:/Users/marce/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"photography portfolio architecture gastronomy editorial minimal luxury\" --design-system -p \"Vitor Mateus Portfolio\")",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(curl -sL \"https://cdn.prod.website-files.com/68532a35829494931a29b25b/js/webflow.schunk.79b71263bda4d666.js\" -o /tmp/schunk.js)",
+      "Bash(grep -oiE \"gsap\\\\.|scrolltrigger|lenis|we-do_item|we-do_img|wedo|scrollsmoother|to\\\\\\(.{0,3}we-do\" /tmp/app.js)",
+      "PowerShell($env:PYTHONIOENCODING = \"utf-8\"; $env:PYTHONUTF8 = \"1\"; python \"C:/Users/marce/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"animation accessibility z-index loading\" --domain ux -n 5)"
     ]
   }
 }
