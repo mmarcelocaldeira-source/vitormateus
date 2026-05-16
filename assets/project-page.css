@@ -3,12 +3,15 @@
   --paper: #f4f1eb;
   --paper-soft: #e7e1d6;
   --muted: #777166;
+  --muted-2: #5e5950;
   --line: rgba(17, 17, 15, 0.12);
+  --line-strong: rgba(17, 17, 15, 0.28);
   --white: #fffaf2;
-  --display: "Host Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Fraunces", "Times New Roman", Georgia, serif;
+  --display: "Fraunces", "Times New Roman", Georgia, serif;
   --body: "Host Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --side: clamp(20px, 4vw, 64px);
-  --max: 1680px;
+  --side: clamp(24px, 5vw, 88px);
+  --max: 1440px;
   --topbar-h: 56px;
 }
 
@@ -75,19 +78,26 @@ button { font: inherit; color: inherit; }
   -webkit-backdrop-filter: blur(20px);
 }
 
-.topbar__brand,
 .topbar__nav,
 .topbar__back,
 .eyebrow,
 .gallery-nav a,
 .technical-sheet dt {
   font-size: 11px;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.16em;
   line-height: 1;
   text-transform: uppercase;
 }
 
-.topbar__brand { white-space: nowrap; font-weight: 500; }
+.topbar__brand {
+  white-space: nowrap;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
 
 .topbar__nav {
   display: flex;
@@ -145,11 +155,12 @@ button { font: inherit; color: inherit; }
 
 .project-hero h1 {
   margin: 0;
-  font-family: var(--display);
+  font-family: var(--serif);
   font-size: clamp(56px, 8.5vw, 140px);
-  font-weight: 500;
-  line-height: 0.84;
-  letter-spacing: -0.075em;
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 144;
 }
 
 .project-hero__desc {
