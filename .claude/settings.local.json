@@ -28,7 +28,16 @@
       "Bash(npm run *)",
       "Bash(curl -sL \"https://cdn.prod.website-files.com/68532a35829494931a29b25b/js/webflow.schunk.79b71263bda4d666.js\" -o /tmp/schunk.js)",
       "Bash(grep -oiE \"gsap\\\\.|scrolltrigger|lenis|we-do_item|we-do_img|wedo|scrollsmoother|to\\\\\\(.{0,3}we-do\" /tmp/app.js)",
-      "PowerShell($env:PYTHONIOENCODING = \"utf-8\"; $env:PYTHONUTF8 = \"1\"; python \"C:/Users/marce/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"animation accessibility z-index loading\" --domain ux -n 5)"
+      "PowerShell($env:PYTHONIOENCODING = \"utf-8\"; $env:PYTHONUTF8 = \"1\"; python \"C:/Users/marce/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"animation accessibility z-index loading\" --domain ux -n 5)",
+      "Bash(curl -sL \"https://www.studioahremark.com/\" -o /tmp/ahremark-home.html)",
+      "Bash(curl -sL \"https://www.studioahremark.com/work/estrid\" -o /tmp/ahremark-case.html)",
+      "Bash(curl -sL \"https://www.studioahremark.com/\" -o ./_research/home.html)",
+      "Bash(curl -sL \"https://www.studioahremark.com/work/estrid\" -o ./_research/case.html)",
+      "Bash(curl -sL \"https://www.studioahremark.com/wp-content/themes/studio-ahremark/dist/css/style.css?ver=23d\" -o ./_research/style.css)",
+      "Bash(curl -sI \"https://api.fontshare.com/v2/css?f[]=switzer@200i,300i,400i,500i,200,300,400,500,600,700&display=swap\")",
+      "Bash(curl -sI \"https://api.fontshare.com/v2/css?f[]=switzer@1,2,3,4,5,6,7,8,9&display=swap\")",
+      "Bash(curl -sL \"https://api.fontshare.com/v2/css?f[]=switzer@1,2,3,4,5,6,7,8,9&display=swap\")",
+      "Bash(grep -v \":0$\")"
     ]
   }
 }

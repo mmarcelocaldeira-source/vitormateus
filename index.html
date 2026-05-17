@@ -7,7 +7,7 @@
   <title>Vitor Mateus - Fotografia & Vídeo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     * { margin: 0; }
@@ -23,9 +23,9 @@
       --white: #fffaf2;
       --max: 1440px;
       --side: clamp(24px, 5vw, 88px);
-      --sans: "Host Grotesk", "Helvetica Neue", Arial, sans-serif;
-      --serif: "Fraunces", "Times New Roman", Georgia, serif;
-      --display: "Fraunces", "Times New Roman", Georgia, serif;
+      --sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+      --serif: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+      --display: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
     }
 
     html {
@@ -92,8 +92,8 @@
       mix-blend-mode: normal;
       color: var(--ink);
       border-bottom: 1px solid var(--line);
-      padding-top: 16px;
-      padding-bottom: 16px;
+      padding-top: 14px;
+      padding-bottom: 14px;
       transition: background 320ms ease, padding 320ms ease;
     }
 
@@ -111,11 +111,11 @@
     }
 
     .section-kicker {
-      font-family: var(--serif);
-      font-size: 14px;
+      font-family: var(--sans);
+      font-size: 13px;
       font-style: italic;
       font-weight: 400;
-      letter-spacing: 0;
+      letter-spacing: 0.005em;
       text-transform: none;
       color: var(--muted-2);
       line-height: 1;
@@ -129,11 +129,10 @@
 
     .brand {
       justify-self: start;
-      font-family: var(--serif);
-      font-size: 17px;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: -0.01em;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
       text-transform: none;
       line-height: 1;
     }
@@ -225,7 +224,6 @@
       font-weight: 300;
       line-height: 1;
       letter-spacing: -0.035em;
-      font-variation-settings: "opsz" 144;
     }
 
     .menu-close {
@@ -291,18 +289,17 @@
       align-items: end;
       gap: 48px;
       padding: 110px var(--side) 42px;
-      max-width: var(--max);
-      margin: 0 auto;
+      max-width: none;
+      margin: 0;
     }
 
     .hero-title {
       max-width: 1140px;
       font-family: var(--serif);
-      font-size: clamp(56px, 9vw, 148px);
+      font-size: clamp(42px, 6.4vw, 104px);
       font-weight: 300;
-      line-height: 0.92;
-      letter-spacing: -0.035em;
-      font-variation-settings: "opsz" 144;
+      line-height: 0.96;
+      letter-spacing: -0.03em;
     }
 
     .hero-title em {
@@ -438,7 +435,6 @@
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.025em;
-      font-variation-settings: "opsz" 144;
     }
 
     .intro-text em {
@@ -455,7 +451,14 @@
     }
 
     .works {
-      padding: 0 var(--side) clamp(120px, 14vw, 180px);
+      padding: 0 0 clamp(120px, 14vw, 180px);
+      max-width: none;
+      margin: 0;
+    }
+
+    .works-head {
+      padding-left: var(--side);
+      padding-right: var(--side);
       max-width: var(--max);
       margin: 0 auto;
     }
@@ -493,128 +496,118 @@
       font-weight: 300;
       letter-spacing: -0.02em;
       line-height: 1.1;
-      font-variation-settings: "opsz" 144;
     }
 
     .works-headline em { font-style: italic; color: var(--muted-2); }
 
     .view-note { display: none; }
 
-    /* ─── Works Index — editorial list ─── */
-    .works-list {
+    /* ─── Works Mosaic — full-bleed grid w/ wide variants ─── */
+    .works-mosaic {
       display: grid;
-      gap: 0;
-      border-top: 1px solid var(--line-strong);
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-flow: dense;
+      grid-auto-rows: clamp(180px, 18vw, 320px);
+      gap: 2px;
+      width: 100%;
+      padding: 0;
     }
 
-    .work-row {
+    @media (max-width: 1280px) { .works-mosaic { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 760px)  { .works-mosaic { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .works-mosaic { grid-template-columns: 1fr; } }
+
+    .mosaic-item {
+      display: block;
       position: relative;
-      display: grid;
-      grid-template-columns: 80px minmax(0, 1fr) auto;
-      gap: clamp(20px, 4vw, 60px);
-      align-items: baseline;
-      padding: clamp(30px, 3.4vw, 48px) 0;
-      border-bottom: 1px solid var(--line-strong);
-      color: var(--ink);
-      text-decoration: none;
-      transition: padding-left 480ms cubic-bezier(.2,.7,.2,1);
-    }
-
-    .work-row__index {
-      font-family: var(--sans);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      transition: color 320ms ease;
-    }
-
-    .work-row__title {
-      font-family: var(--serif);
-      font-size: clamp(38px, 5.4vw, 96px);
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -0.035em;
-      font-variation-settings: "opsz" 144;
-      transition: transform 540ms cubic-bezier(.2,.7,.2,1), font-style 320ms ease, color 320ms ease;
-    }
-
-    .work-row__meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .work-row__meta span:not(:last-child)::after {
-      content: "";
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      margin-left: 16px;
-      background: currentColor;
-      border-radius: 50%;
-      opacity: 0.5;
-      vertical-align: middle;
-    }
-
-    /* Underline of row on hover */
-    .work-row::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -1px;
-      width: 0;
-      height: 1px;
-      background: var(--ink);
-      transition: width 760ms cubic-bezier(.2,.7,.2,1);
-    }
-
-    .work-row:hover::before { width: 100%; }
-
-    .work-row:hover .work-row__title {
-      font-style: italic;
-      color: var(--muted-2);
-    }
-
-    .work-row:hover .work-row__index { color: var(--ink); }
-
-    /* Floating preview that follows cursor */
-    .work-preview {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 80;
-      width: clamp(260px, 26vw, 380px);
-      height: clamp(340px, 32vw, 460px);
       overflow: hidden;
-      pointer-events: none;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.96);
-      transition: opacity 320ms ease, transform 520ms cubic-bezier(.2,.7,.2,1);
-      will-change: transform, opacity;
       background: var(--paper-soft);
+      text-decoration: none;
+      color: var(--white);
+      cursor: pointer;
+      border-radius: 0;
+      grid-row: span 2;
     }
 
-    .work-preview.is-active {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+    /* Span variants for editorial rhythm */
+    .mosaic-item.is-wide    { grid-column: span 2; grid-row: span 2; }
+    .mosaic-item.is-tall    { grid-row: span 3; }
+    .mosaic-item.is-feature { grid-column: span 2; grid-row: span 4; }
+    .mosaic-item.is-square  { grid-row: span 2; }
+
+    @media (max-width: 760px) {
+      .mosaic-item.is-feature { grid-column: span 2; grid-row: span 3; }
+    }
+    @media (max-width: 480px) {
+      .mosaic-item.is-wide,
+      .mosaic-item.is-tall,
+      .mosaic-item.is-feature,
+      .mosaic-item.is-square { grid-column: span 1; grid-row: span 2; }
     }
 
-    .work-preview img {
+    .mosaic-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 360ms ease;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 1100ms cubic-bezier(.2,.7,.2,1), filter 480ms ease;
+      filter: saturate(0.96);
     }
 
-    .work-preview img.is-current { opacity: 1; }
+    .mosaic-item:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.02) brightness(0.7);
+    }
+
+    .mosaic-item__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: clamp(20px, 2.4vw, 36px);
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+      opacity: 0;
+      transition: opacity 380ms ease;
+      pointer-events: none;
+    }
+
+    .mosaic-item:hover .mosaic-item__overlay { opacity: 1; }
+
+    .mosaic-item__cat {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 250, 242, 0.72);
+    }
+
+    .mosaic-item__title {
+      font-family: var(--display);
+      font-size: clamp(20px, 2vw, 30px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .mosaic-item__loc {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 250, 242, 0.6);
+    }
+
+    .mosaic-item.reveal-stagger {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 800ms cubic-bezier(.2,.7,.2,1);
+    }
+    .mosaic-item.reveal-stagger.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .project {
       display: grid;
@@ -747,7 +740,6 @@
       font-weight: 300;
       line-height: 1.08;
       letter-spacing: -0.025em;
-      font-variation-settings: "opsz" 144;
     }
 
     .about-text em {
@@ -813,7 +805,6 @@
       font-weight: 300;
       line-height: 0.92;
       letter-spacing: -0.045em;
-      font-variation-settings: "opsz" 144;
     }
 
     .contact-title em { font-style: italic; color: var(--muted); font-weight: 300; }
@@ -936,19 +927,7 @@
       .project-info { position: static; min-height: auto; }
       .project-copy { max-width: 520px; }
 
-      .work-row {
-        grid-template-columns: auto 1fr;
-        gap: 14px 16px;
-        padding: 26px 0;
-      }
-      .work-row__title {
-        grid-column: 1 / -1;
-        font-size: clamp(40px, 12vw, 64px);
-      }
-      .work-row__meta {
-        grid-column: 1 / -1;
-        gap: 12px;
-      }
+      .mosaic-item__overlay { opacity: 1; }
     }
 
     @media (max-width: 680px) {
@@ -1023,11 +1002,9 @@
       </div>
       <div class="hero-content">
         <div class="hero-title-wrap">
-          <span class="hero-eyebrow">Vitor Mateus — Fotografia &amp; Vídeo</span>
-          <h1 class="hero-title">Precisão na luz, <em>presença na imagem.</em></h1>
+          <h1 class="hero-title">Direção visual<br /><em>com presença.</em></h1>
         </div>
         <div class="hero-aside">
-          <p class="hero-copy">Imagens precisas para marcas, espaços e experiências que precisam ser lembradas antes de serem explicadas.</p>
           <div class="hero-controls" aria-hidden="true">
             <div class="progress-track"><span class="progress-bar"></span></div>
             <div class="hero-meta meta">
@@ -1051,58 +1028,7 @@
     </section>
 
     <section class="works" id="trabalhos">
-      <div class="works-head">
-        <span class="works-num">(02) — Trabalhos</span>
-        <p class="works-headline">Quatro territórios, uma <em>mesma direção visual</em> — selecionados por matéria, ritmo e silêncio.</p>
-      </div>
-
-      <div class="works-list reveal">
-        <a class="work-row" href="arquitetura.html"
-           data-preview="assets/arquitetura/arq-01.jpg,assets/arquitetura/arq-04.jpg,assets/arquitetura/arq-07.jpg">
-          <span class="work-row__index">01 / 04</span>
-          <span class="work-row__title">Arquitetura</span>
-          <span class="work-row__meta">
-            <span>Espaços</span>
-            <span>2024 — 2025</span>
-            <span>3 projetos</span>
-          </span>
-        </a>
-
-        <a class="work-row" href="gastronomia.html"
-           data-preview="assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg,assets/gastronomia/caprese/caprese-01.jpg,assets/gastronomia/tagate/tagate-01.jpg,assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg">
-          <span class="work-row__index">02 / 04</span>
-          <span class="work-row__title">Gastronomia</span>
-          <span class="work-row__meta">
-            <span>Matéria</span>
-            <span>2024 — 2025</span>
-            <span>4 projetos</span>
-          </span>
-        </a>
-
-        <a class="work-row" href="retratos.html"
-           data-preview="assets/retratos/kenji/kenji-01.jpg,assets/retratos/kenji/kenji-05.jpg,assets/retratos/kenji/kenji-09.jpg">
-          <span class="work-row__index">03 / 04</span>
-          <span class="work-row__title">Retratos</span>
-          <span class="work-row__meta">
-            <span>Presença</span>
-            <span>2025</span>
-            <span>3 séries</span>
-          </span>
-        </a>
-
-        <a class="work-row" href="autoriais.html"
-           data-preview="assets/autorais/waves-03.jpg,assets/autorais/buenos-aires-2022/buenos-aires-01.jpg,assets/autorais/portra-160/portra160-01.jpg,assets/autorais/kodak-gold-200/kodak-gold200-01.jpg">
-          <span class="work-row__index">04 / 04</span>
-          <span class="work-row__title">Autorais</span>
-          <span class="work-row__meta">
-            <span>Pesquisa</span>
-            <span>2022 — 2024</span>
-            <span>4 séries</span>
-          </span>
-        </a>
-      </div>
-
-      <div class="work-preview" aria-hidden="true" id="workPreview"></div>
+      <div class="works-mosaic" id="worksMosaic"></div>
     </section>
 
     <section class="about" id="sobre">
@@ -1258,75 +1184,77 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // ─── Work List Preview (cursor-following thumbnail) ───
-    const workRows = document.querySelectorAll(".work-row");
-    const workPreview = document.getElementById("workPreview");
-    let previewMouseX = 0, previewMouseY = 0;
-    let previewActiveRow = null;
-    let previewCycleId = null;
-    let previewImages = [];
-    let previewIndex = 0;
+    // ─── Works Mosaic — random images across all categories ───
+    const mosaicData = [
+      // Arquitetura
+      { src: "assets/arquitetura/arq-01.jpg", title: "Casa Linha",      cat: "Arquitetura", loc: "São Paulo, BR",     href: "projeto.html?categoria=arquitetura&projeto=casa-linha" },
+      { src: "assets/arquitetura/arq-02.jpg", title: "Casa Linha",      cat: "Arquitetura", loc: "São Paulo, BR",     href: "projeto.html?categoria=arquitetura&projeto=casa-linha" },
+      { src: "assets/arquitetura/arq-04.jpg", title: "Escada Norte",    cat: "Arquitetura", loc: "Curitiba, BR",      href: "projeto.html?categoria=arquitetura&projeto=escada-norte" },
+      { src: "assets/arquitetura/arq-05.jpg", title: "Escada Norte",    cat: "Arquitetura", loc: "Curitiba, BR",      href: "projeto.html?categoria=arquitetura&projeto=escada-norte" },
+      { src: "assets/arquitetura/arq-07.jpg", title: "Pátio Monolito",  cat: "Arquitetura", loc: "Belo Horizonte, BR", href: "projeto.html?categoria=arquitetura&projeto=patio-monolito" },
+      { src: "assets/arquitetura/arq-09.jpg", title: "Pátio Monolito",  cat: "Arquitetura", loc: "Belo Horizonte, BR", href: "projeto.html?categoria=arquitetura&projeto=patio-monolito" },
+      // Gastronomia
+      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
+      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-05.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
+      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-10.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
+      { src: "assets/gastronomia/caprese/caprese-01.jpg",             title: "Caprese",         cat: "Gastronomia", loc: "Rio de Janeiro, BR", href: "projeto.html?categoria=gastronomia&projeto=caprese" },
+      { src: "assets/gastronomia/caprese/caprese-03.jpg",             title: "Caprese",         cat: "Gastronomia", loc: "Rio de Janeiro, BR", href: "projeto.html?categoria=gastronomia&projeto=caprese" },
+      { src: "assets/gastronomia/tagate/tagate-01.jpg",               title: "Tagate",          cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=tagate" },
+      { src: "assets/gastronomia/tagate/tagate-04.jpg",               title: "Tagate",          cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=tagate" },
+      { src: "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg", title: "Pain au Chocolat", cat: "Gastronomia", loc: "Paris, FR", href: "projeto.html?categoria=gastronomia&projeto=pain-au-chocolat" },
+      // Retratos
+      { src: "assets/retratos/kenji/kenji-01.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-01" },
+      { src: "assets/retratos/kenji/kenji-03.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-01" },
+      { src: "assets/retratos/kenji/kenji-05.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-02" },
+      { src: "assets/retratos/kenji/kenji-08.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-02" },
+      { src: "assets/retratos/kenji/kenji-10.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-03" },
+    ];
 
-    const buildPreviewImages = sources => {
-      workPreview.innerHTML = "";
-      previewImages = sources.map((src, idx) => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.loading = "lazy";
-        img.alt = "";
-        if (idx === 0) img.classList.add("is-current");
-        workPreview.appendChild(img);
-        return img;
-      });
-      previewIndex = 0;
+    // Fisher-Yates shuffle
+    const shuffle = arr => {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
     };
 
-    const cyclePreview = () => {
-      if (previewImages.length < 2) return;
-      previewImages[previewIndex].classList.remove("is-current");
-      previewIndex = (previewIndex + 1) % previewImages.length;
-      previewImages[previewIndex].classList.add("is-current");
+    const mosaic = document.getElementById("worksMosaic");
+    const shuffled = shuffle(mosaicData);
+
+    const pickVariant = i => {
+      const r = Math.random();
+      if (i === 0) return "";
+      if (r < 0.10) return "is-feature"; // big vertical 2-col
+      if (r < 0.26) return "is-wide";    // 2-col landscape
+      if (r < 0.42) return "is-tall";    // 1-col vertical
+      return "";
     };
 
-    let previewRaf;
-    const tickPreview = () => {
-      workPreview.style.transform =
-        `translate(calc(${previewMouseX}px - 50%), calc(${previewMouseY}px - 50%)) scale(${workPreview.classList.contains("is-active") ? 1 : 0.96})`;
-      previewRaf = requestAnimationFrame(tickPreview);
-    };
+    mosaic.innerHTML = shuffled.map((item, i) => `
+      <a class="mosaic-item reveal-stagger ${pickVariant(i)}" href="${item.href}">
+        <img src="${item.src}" alt="${item.title} — ${item.cat}" loading="lazy" />
+        <div class="mosaic-item__overlay">
+          <span class="mosaic-item__cat">${item.cat}</span>
+          <span class="mosaic-item__title">${item.title}</span>
+          <span class="mosaic-item__loc">${item.loc}</span>
+        </div>
+      </a>
+    `).join("");
 
-    document.addEventListener("mousemove", e => {
-      previewMouseX = e.clientX;
-      previewMouseY = e.clientY;
-    });
-
-    workRows.forEach(row => {
-      row.addEventListener("mouseenter", () => {
-        const sources = row.dataset.preview.split(",").map(s => s.trim()).filter(Boolean);
-        if (!sources.length) return;
-        previewActiveRow = row;
-        buildPreviewImages(sources);
-        workPreview.classList.add("is-active");
-        if (!previewRaf) tickPreview();
-        clearInterval(previewCycleId);
-        previewCycleId = setInterval(cyclePreview, 1200);
-      });
-
-      row.addEventListener("mouseleave", () => {
-        if (previewActiveRow === row) {
-          workPreview.classList.remove("is-active");
-          previewActiveRow = null;
-          clearInterval(previewCycleId);
-          previewCycleId = null;
+    // Stagger reveal
+    const mosaicObserver = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${i * 60}ms`;
+          entry.target.classList.add("is-visible");
+          mosaicObserver.unobserve(entry.target);
         }
       });
-    });
+    }, { threshold: 0.1, rootMargin: "0px 0px -80px 0px" });
 
-    // Hide preview on touch / small screens
-    const noPreview = window.matchMedia("(hover: none), (max-width: 720px)");
-    if (noPreview.matches) {
-      workPreview.style.display = "none";
-    }
+    mosaic.querySelectorAll(".mosaic-item").forEach(el => mosaicObserver.observe(el));
 
     // ─── Page Transitions ───
     const pageTransition = document.querySelector(".page-transition");
@@ -1338,14 +1266,14 @@
       }, { once: true });
     };
 
-    document.querySelectorAll("a[href]").forEach(link => {
+    document.addEventListener("click", e => {
+      const link = e.target.closest("a[href]");
+      if (!link) return;
       const href = link.getAttribute("href");
       if (!href || href.startsWith("#") || href.startsWith("mailto") || href.startsWith("tel")) return;
-      link.addEventListener("click", e => {
-        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-        e.preventDefault();
-        navigateTo(href);
-      });
+      if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      navigateTo(href);
     });
 
   </script>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System — Vitor Mateus (Ahremark study)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--color-background);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: var(--row-2) var(--row-3);
+      max-width: var(--l-max-width-wide);
+      margin: 0 auto;
+    }
+
+    /* ─── Page header ─── */
+    .ds-hero {
+      padding: var(--row-8) 0 var(--row-6);
+      border-bottom: 1px solid var(--color-line-strong);
+      display: grid;
+      gap: var(--row-2);
+    }
+
+    .ds-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ds-eyebrow::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--color-line-strong);
+    }
+
+    .ds-title {
+      font-family: var(--font-heading);
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+    .ds-title em { color: var(--color-muted); }
+
+    .ds-subtitle {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 22px;
+      color: var(--color-gray-3);
+      max-width: 60ch;
+    }
+
+    /* ─── TOC ─── */
+    .ds-toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--row-1) var(--row-2);
+      padding: var(--row-3) 0;
+      border-bottom: 1px solid var(--color-line);
+      position: sticky;
+      top: 0;
+      background: color-mix(in srgb, var(--color-background) 92%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10;
+    }
+    .ds-toc a {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .ds-toc a:hover { color: var(--color-text); }
+
+    /* ─── Sections ─── */
+    section.ds-section {
+      padding: var(--row-8) 0 var(--row-6);
+      border-bottom: 1px solid var(--color-line);
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--row-4);
+      align-items: start;
+    }
+
+    .ds-section__head { position: sticky; top: 70px; display: grid; gap: 8px; }
+    .ds-section__num {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .ds-section__title {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .ds-section__body { display: grid; gap: var(--row-3); }
+
+    /* ─── Tables ─── */
+    table.ds-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .ds-table th, .ds-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-line);
+      vertical-align: top;
+    }
+    .ds-table th {
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      border-bottom: 1px solid var(--color-line-strong);
+    }
+    .ds-table code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", monospace;
+      font-size: 12px;
+      color: var(--color-gray-3);
+      background: var(--color-gray-2);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* ─── Color swatches ─── */
+    .ds-swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .ds-swatch {
+      display: grid;
+      gap: 8px;
+    }
+    .ds-swatch__chip {
+      height: 100px;
+      border: 1px solid var(--color-line);
+    }
+    .ds-swatch__name {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--color-text);
+    }
+    .ds-swatch__hex {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+
+    /* ─── Type specimens ─── */
+    .ds-spec {
+      padding: 24px 0;
+      border-bottom: 1px dashed var(--color-line);
+    }
+    .ds-spec:last-child { border-bottom: 0; }
+    .ds-spec__meta {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+    .ds-spec__sample-h1 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-huge);
+      line-height: var(--line-height-huge);
+      font-weight: 300;
+      letter-spacing: -0.035em;
+    }
+    .ds-spec__sample-h2 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xlarge);
+      line-height: var(--line-height-xlarge);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+    .ds-spec__sample-h3 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-large);
+      line-height: var(--line-height-large);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    .ds-spec__sample-h4 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-medium);
+      line-height: var(--line-height-medium);
+      font-weight: 300;
+    }
+    .ds-spec__sample-body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-small);
+      line-height: var(--line-height-small);
+      max-width: 60ch;
+    }
+    .ds-spec__sample-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .ds-spec__sample-italic {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--color-gray-3);
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Components preview ─── */
+    .ds-component {
+      background: var(--color-gray-2);
+      padding: var(--row-3);
+      display: grid;
+      gap: var(--row-2);
+    }
+    .ds-component-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    /* Button c-button (Ahremark structure) */
+    .c-button {
+      --c-button-font-size: var(--font-size-small);
+      --c-button-line-height: var(--line-height-small);
+      --c-button-padding-tb: calc(var(--c-button-font-size) * 0.5);
+      --c-button-padding-lr: calc(var(--c-button-font-size) * 2);
+      --c-button-border-radius: calc((var(--c-button-font-size) + var(--line-height-small)) / 2);
+
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: var(--c-button-padding-tb) var(--c-button-padding-lr);
+      font-size: var(--c-button-font-size);
+      line-height: var(--c-button-line-height);
+      border: 1px solid var(--color-text);
+      border-radius: var(--c-button-border-radius);
+      color: var(--color-text);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition), padding var(--transition);
+      cursor: pointer;
+    }
+    .c-button:hover {
+      background: var(--color-text);
+      color: var(--color-background);
+      padding-left: calc(var(--c-button-padding-lr) + 6px);
+      padding-right: calc(var(--c-button-padding-lr) + 6px);
+    }
+    .c-button--ghost { border-color: var(--color-line-strong); color: var(--color-gray-3); }
+
+    /* List rows (work list pattern) */
+    .ds-list { border-top: 1px solid var(--color-line-strong); }
+    .ds-list__row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--color-line-strong);
+      cursor: pointer;
+      position: relative;
+    }
+    .ds-list__num { font-size: 11px; letter-spacing: 0.16em; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+    .ds-list__title {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      transition: font-style var(--transition), color var(--transition);
+    }
+    .ds-list__meta { font-size: 11px; letter-spacing: 0.16em; color: var(--color-muted); }
+    .ds-list__row:hover .ds-list__title { font-style: italic; color: var(--color-gray-3); }
+
+    /* Footer-sticky demo */
+    .ds-sticky-demo {
+      position: relative;
+      min-height: 200vh;
+      background: var(--color-gray-2);
+      padding: var(--row-4);
+    }
+    .ds-sticky-demo__content {
+      position: relative;
+      z-index: 1;
+      background: var(--color-background);
+      padding: var(--row-3);
+      margin-bottom: 50vh;
+      box-shadow: var(--drop-shadow);
+    }
+    .ds-sticky-demo__footer {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80vh;
+      background: var(--color-gray-4);
+      color: var(--color-white);
+      padding: var(--row-3);
+      z-index: 0;
+      display: grid;
+      align-content: end;
+      gap: 16px;
+    }
+    .ds-sticky-demo__footer h3 {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    /* Spacing visualizer */
+    .ds-space-bar {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      font-size: 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--color-line);
+    }
+    .ds-space-bar__name { color: var(--color-muted); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .ds-space-bar__visual { height: 8px; background: var(--color-text); }
+    .ds-space-bar__value { font-family: ui-monospace, monospace; color: var(--color-gray-3); }
+
+    /* Easing preview */
+    .ds-easing {
+      position: relative;
+      height: 60px;
+      background: var(--color-gray-2);
+      overflow: hidden;
+    }
+    .ds-easing__dot {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-text);
+      transform: translateY(-50%);
+      animation: ds-easing-run 2.4s infinite;
+    }
+    .ds-easing--slow .ds-easing__dot { animation-timing-function: cubic-bezier(0.36, 0.64, 0.23, 0.94); animation-duration: 1.6s; }
+    .ds-easing--curve .ds-easing__dot { animation-timing-function: cubic-bezier(1, 0, 0.29, 1); animation-duration: 1.6s; }
+    @keyframes ds-easing-run {
+      0%   { left: 4px; }
+      45%  { left: calc(100% - 18px); }
+      55%  { left: calc(100% - 18px); }
+      100% { left: 4px; }
+    }
+
+    /* Mobile */
+    @media (max-width: 760px) {
+      section.ds-section { grid-template-columns: 1fr; }
+      .ds-section__head { position: static; }
+      .ds-list__row { grid-template-columns: auto 1fr; }
+      .ds-list__title { grid-column: 1 / -1; font-size: 36px; }
+      .ds-list__meta { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="ds-hero">
+    <span class="ds-eyebrow">Design System — v1.0</span>
+    <h1 class="ds-title">Vitor Mateus <em>Studio Guide.</em></h1>
+    <p class="ds-subtitle">Sistema editorial extraído de <strong>Studio Ahremark</strong>. Tipografia silenciosa, ritmo de baseline, scroll choreography. Sem cantos arredondados em mídia.</p>
+  </header>
+
+  <!-- ═══ TOC ═══ -->
+  <nav class="ds-toc" aria-label="Sumário">
+    <a href="#foundations">(01) Foundations</a>
+    <a href="#color">(02) Color</a>
+    <a href="#typography">(03) Typography</a>
+    <a href="#spacing">(04) Spacing</a>
+    <a href="#motion">(05) Motion</a>
+    <a href="#components">(06) Components</a>
+    <a href="#patterns">(07) Patterns</a>
+    <a href="#scroll">(08) Scroll choreography</a>
+  </nav>
+
+  <!-- ═══ 01 FOUNDATIONS ═══ -->
+  <section class="ds-section" id="foundations">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(01)</span>
+      <h2 class="ds-section__title">Foundations</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Ahremark builds tudo sobre <strong>baseline grid de 1rem</strong>. Toda altura, padding, line-height alinha rows. Resultado: ritmo vertical perfeito sem esforço.</p>
+      <table class="ds-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>--row-height</code></td><td>1rem</td><td>Unidade base de ritmo vertical</td></tr>
+          <tr><td><code>--baseline-unit</code></td><td>0.25rem</td><td>Unidade de gap pequeno</td></tr>
+          <tr><td><code>--l-max-width-wide</code></td><td>1440px</td><td>Largura máxima de container</td></tr>
+          <tr><td><code>--l-max-width-narrow</code></td><td>720px</td><td>Largura para texto longo</td></tr>
+          <tr><td><code>--site-header-height</code></td><td>calc(0.8rem + 2rem) ≈ 45px</td><td>Topbar fixa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 02 COLOR ═══ -->
+  <section class="ds-section" id="color">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(02)</span>
+      <h2 class="ds-section__title">Color</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Palette warm-neutral (vs. cold gray do Ahremark). Sempre alto contraste: <code>ink</code> sobre <code>paper</code>. Dark surface invertida para about/contact dramáticos.</p>
+
+      <div class="ds-swatch-grid">
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#11110f"></div><span class="ds-swatch__name">ink / black</span><span class="ds-swatch__hex">#11110f</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#fffaf2"></div><span class="ds-swatch__name">white</span><span class="ds-swatch__hex">#fffaf2</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#f4f1eb"></div><span class="ds-swatch__name">paper</span><span class="ds-swatch__hex">#f4f1eb</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#e7e1d6"></div><span class="ds-swatch__name">paper-soft</span><span class="ds-swatch__hex">#e7e1d6</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#8a857b"></div><span class="ds-swatch__name">muted</span><span class="ds-swatch__hex">#8a857b</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#5e5950"></div><span class="ds-swatch__name">muted-2</span><span class="ds-swatch__hex">#5e5950</span></div>
+        <div class="ds-swatch"><div class="ds-swatch__chip" style="background:#1c1d1e"></div><span class="ds-swatch__name">dark surface</span><span class="ds-swatch__hex">#1c1d1e</span></div>
+      </div>
+
+      <h4 style="margin-top:var(--row-2);font-family:var(--font-heading);font-weight:300;font-size:20px">Borders / Lines</h4>
+      <table class="ds-table">
+        <tr><td><code>--color-line</code></td><td><code>rgba(17,17,15,0.14)</code></td><td>Divisor sutil entre rows</td></tr>
+        <tr><td><code>--color-line-strong</code></td><td><code>rgba(17,17,15,0.28)</code></td><td>Topo/base de section</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 03 TYPOGRAPHY ═══ -->
+  <section class="ds-section" id="typography">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(03)</span>
+      <h2 class="ds-section__title">Typography</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Dois tipos. <strong>Fraunces</strong> (serif variable) substitui Ahremark "Plain" para tudo display + italic accents. <strong>Host Grotesk</strong> para UI/meta. Headings sempre <code>font-weight: 300</code>.</p>
+
+      <h4 style="margin-top:var(--row-2);font-family:var(--font-heading);font-weight:300;font-size:22px;color:var(--color-gray-3)">Escala (rem, alinhada a baseline)</h4>
+      <table class="ds-table">
+        <thead><tr><th>Token</th><th>Mobile</th><th>Desktop ≥768</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>--font-size-tiny</code></td><td>0.9rem</td><td>0.9rem</td><td>Body small / caption</td></tr>
+          <tr><td><code>--font-size-small</code></td><td>0.9rem</td><td>0.9rem</td><td>Body principal</td></tr>
+          <tr><td><code>--font-size-medium</code></td><td>1.75rem</td><td>1.75rem</td><td>H4</td></tr>
+          <tr><td><code>--font-size-large</code></td><td>3rem</td><td>3rem</td><td>H3</td></tr>
+          <tr><td><code>--font-size-xlarge</code></td><td>1.75rem</td><td>3.75rem</td><td>H2</td></tr>
+          <tr><td><code>--font-size-huge</code></td><td>2.75rem</td><td>4.25rem</td><td>H1 — hero</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:var(--row-2);font-family:var(--font-heading);font-weight:300;font-size:22px;color:var(--color-gray-3)">Specimens</h4>
+
+      <div class="ds-spec">
+        <div class="ds-spec__meta">H1 — var(--font-size-huge) — Fraunces 300</div>
+        <p class="ds-spec__sample-h1">Precisão na luz, <em style="font-style:italic;color:var(--color-muted)">presença na imagem.</em></p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">H2 — var(--font-size-xlarge) — Fraunces 300</div>
+        <p class="ds-spec__sample-h2">Quatro territórios, uma mesma direção visual.</p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">H3 — var(--font-size-large) — Fraunces 300</div>
+        <p class="ds-spec__sample-h3">Arquitetura</p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">H4 — var(--font-size-medium) — Fraunces 300</div>
+        <p class="ds-spec__sample-h4">Casa Linha</p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">Italic accent — 32px Fraunces italic 300</div>
+        <p class="ds-spec__sample-italic">Estúdio independente, Brasil.</p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">Body — var(--font-size-small) — Host Grotesk 400</div>
+        <p class="ds-spec__sample-body">Direção visual para marcas, espaços e pessoas. A proposta é tratar cada categoria como um ensaio, com ritmo de edição, escala e pausas visuais.</p>
+      </div>
+      <div class="ds-spec">
+        <div class="ds-spec__meta">Eyebrow — 11px tracked 0.18em uppercase Host Grotesk</div>
+        <span class="ds-spec__sample-eyebrow">(01) — Estúdio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04 SPACING ═══ -->
+  <section class="ds-section" id="spacing">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(04)</span>
+      <h2 class="ds-section__title">Spacing</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Escala 4-based: <code>1·2·4·6·8·16·32</code> × <code>--baseline-unit</code> (0.25rem). Tudo aderente a row grid.</p>
+      <div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-nano</span><span class="ds-space-bar__visual" style="width:4px"></span><span class="ds-space-bar__value">4px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-micro</span><span class="ds-space-bar__visual" style="width:8px"></span><span class="ds-space-bar__value">8px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-tiny</span><span class="ds-space-bar__visual" style="width:16px"></span><span class="ds-space-bar__value">16px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-small</span><span class="ds-space-bar__visual" style="width:24px"></span><span class="ds-space-bar__value">24px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap</span><span class="ds-space-bar__visual" style="width:32px"></span><span class="ds-space-bar__value">32px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-large</span><span class="ds-space-bar__visual" style="width:64px"></span><span class="ds-space-bar__value">64px</span></div>
+        <div class="ds-space-bar"><span class="ds-space-bar__name">gap-huge</span><span class="ds-space-bar__visual" style="width:128px"></span><span class="ds-space-bar__value">128px</span></div>
+      </div>
+
+      <h4 style="margin-top:var(--row-2);font-family:var(--font-heading);font-weight:300;font-size:22px;color:var(--color-gray-3)">Row rhythm</h4>
+      <table class="ds-table">
+        <tr><td><code>--row-1</code></td><td>1rem  / 16px</td></tr>
+        <tr><td><code>--row-2</code></td><td>2rem  / 32px</td></tr>
+        <tr><td><code>--row-3</code></td><td>3rem  / 48px</td></tr>
+        <tr><td><code>--row-4</code></td><td>4rem  / 64px  <span style="color:var(--color-muted)">— gap-section mobile</span></td></tr>
+        <tr><td><code>--row-6</code></td><td>6rem  / 96px  <span style="color:var(--color-muted)">— gap-section desktop</span></td></tr>
+        <tr><td><code>--row-8</code></td><td>8rem  / 128px</td></tr>
+        <tr><td><code>--row-12</code></td><td>12rem / 192px</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 05 MOTION ═══ -->
+  <section class="ds-section" id="motion">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(05)</span>
+      <h2 class="ds-section__title">Motion</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Duas easings principais. <code>--transition</code> para hovers/states. <code>--transition-curve</code> para movimento amplo (sticky reveals, page transitions).</p>
+
+      <table class="ds-table">
+        <thead><tr><th>Token</th><th>Curva</th><th>Duração</th></tr></thead>
+        <tbody>
+          <tr><td><code>--transition-quick</code></td><td>ease-in-out</td><td>0.1s</td></tr>
+          <tr><td><code>--transition</code></td><td>cubic-bezier(0.36, 0.64, 0.23, 0.94)</td><td>0.4s</td></tr>
+          <tr><td><code>--transition-slow</code></td><td>cubic-bezier(0.36, 0.64, 0.23, 0.94)</td><td>0.8s</td></tr>
+          <tr><td><code>--transition-curve</code></td><td>cubic-bezier(1, 0, 0.29, 1)</td><td>0.4s</td></tr>
+          <tr><td><code>--transition-curve-slow</code></td><td>cubic-bezier(1, 0, 0.29, 1)</td><td>0.8s</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-family:var(--font-heading);font-weight:300;font-size:22px;color:var(--color-gray-3)">Preview</h4>
+      <div>
+        <div class="ds-component-label">--transition-slow · cubic-bezier(0.36, 0.64, 0.23, 0.94)</div>
+        <div class="ds-easing ds-easing--slow"><span class="ds-easing__dot"></span></div>
+      </div>
+      <div>
+        <div class="ds-component-label">--transition-curve-slow · cubic-bezier(1, 0, 0.29, 1)</div>
+        <div class="ds-easing ds-easing--curve"><span class="ds-easing__dot"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 06 COMPONENTS ═══ -->
+  <section class="ds-section" id="components">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(06)</span>
+      <h2 class="ds-section__title">Components</h2>
+    </div>
+    <div class="ds-section__body">
+
+      <div class="ds-component">
+        <span class="ds-component-label">c-button — primary</span>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+          <a class="c-button" href="#">Get in touch <span>→</span></a>
+          <a class="c-button c-button--ghost" href="#">Ver projetos</a>
+        </div>
+      </div>
+
+      <div class="ds-component">
+        <span class="ds-component-label">c-list / work-row — editorial index</span>
+        <div class="ds-list">
+          <div class="ds-list__row">
+            <span class="ds-list__num">01 / 04</span>
+            <span class="ds-list__title">Arquitetura</span>
+            <span class="ds-list__meta">3 projetos</span>
+          </div>
+          <div class="ds-list__row">
+            <span class="ds-list__num">02 / 04</span>
+            <span class="ds-list__title">Gastronomia</span>
+            <span class="ds-list__meta">4 projetos</span>
+          </div>
+          <div class="ds-list__row">
+            <span class="ds-list__num">03 / 04</span>
+            <span class="ds-list__title">Retratos</span>
+            <span class="ds-list__meta">3 séries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-component">
+        <span class="ds-component-label">Eyebrow numbered (section kicker)</span>
+        <div style="display:flex;gap:32px;flex-wrap:wrap">
+          <span class="ds-eyebrow">(01) — Estúdio</span>
+          <span class="ds-eyebrow">(02) — Trabalhos</span>
+          <span class="ds-eyebrow">(03) — Sobre</span>
+          <span class="ds-eyebrow">(04) — Contato</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 07 PATTERNS ═══ -->
+  <section class="ds-section" id="patterns">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(07)</span>
+      <h2 class="ds-section__title">Patterns</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Estruturas reutilizáveis. Ver <code>patterns.md</code> para regras de uso completas.</p>
+      <ul style="display:grid;gap:14px;color:var(--color-gray-3);max-width:60ch">
+        <li><strong>Section header</strong> — eyebrow numerado <code>(NN) — Label</code> + título serif italic 32px</li>
+        <li><strong>2-col with sticky aside</strong> — esquerda sticky 0.32fr / direita scroll 1fr</li>
+        <li><strong>Editorial work list</strong> — rows 80px-1fr-auto. Hover: title vira italic, underline 760ms</li>
+        <li><strong>Numbered nav modal</strong> — full-screen menu items Fraunces 300 grandes, com numbering</li>
+        <li><strong>Page transition curtain</strong> — overlay ink desce do bottom em 600ms ao trocar página</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 08 SCROLL CHOREOGRAPHY ═══ -->
+  <section class="ds-section" id="scroll">
+    <div class="ds-section__head">
+      <span class="ds-section__num">(08)</span>
+      <h2 class="ds-section__title">Scroll choreography</h2>
+    </div>
+    <div class="ds-section__body">
+      <p style="max-width:60ch;color:var(--color-gray-3)">Truque-mestre Ahremark: <strong>footer sticky com bottom: 0, z-index: 0</strong>. Main content rola por cima. Próximo case é revelado dentro do footer conforme scroll chega ao fim. Hover intensifica media opacity 0.7 → 1.</p>
+
+      <div class="ds-component">
+        <span class="ds-component-label">Demo: footer sticky reveal (scroll dentro do bloco)</span>
+        <div class="ds-sticky-demo" style="overflow:auto;max-height:560px">
+          <div class="ds-sticky-demo__footer">
+            <small style="opacity:.5;letter-spacing:.16em;text-transform:uppercase;font-size:11px">(Próximo)</small>
+            <h3>Gastronomia →</h3>
+          </div>
+          <div class="ds-sticky-demo__content">
+            <h4 style="font-family:var(--font-heading);font-weight:300;font-size:32px;margin-bottom:16px">Casa Linha</h4>
+            <p style="max-width:60ch;line-height:1.6">Continue scrollando dentro deste container. Conteúdo principal sobe e o footer com próximo case emerge atrás. Hovering o footer revela imagem mais intensa.</p>
+            <p style="margin-top:120vh;color:var(--color-muted)">Fim do conteúdo. Footer aparece total.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 style="margin-top:var(--row-2);font-family:var(--font-heading);font-weight:300;font-size:22px;color:var(--color-gray-3)">CSS pattern</h4>
+      <pre style="background:var(--color-gray-2);padding:16px;overflow:auto;font-size:12px;font-family:ui-monospace,monospace;line-height:1.5"><code>.l-site-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  background: var(--color-gray-4);  /* dark */
+  color: var(--color-white);
+  clip-path: inset(0);
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  background: var(--color-background);
+}
+
+.l-site-footer__media {
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  transition: opacity 0.5s linear;
+}
+.l-site-footer:hover .l-site-footer__media { opacity: 1; }
+
+.l-site-footer--case .l-site-footer__column--title {
+  padding-bottom: 50vh;  /* makes next-case title space generously */
+}</code></pre>
+    </div>
+  </section>
+
+  <footer style="padding:var(--row-6) 0 var(--row-3);text-align:center;color:var(--color-muted);font-size:11px;letter-spacing:.16em;text-transform:uppercase">
+    © Vitor Mateus — Design System v1.0 · Reference: Studio Ahremark
+  </footer>
+
+</body>
+</html>

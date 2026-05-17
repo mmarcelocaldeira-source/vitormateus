@@ -2,14 +2,15 @@
   --ink: #11110f;
   --paper: #f4f1eb;
   --paper-soft: #e7e1d6;
-  --muted: #777166;
+  --muted: #8a857b;
   --muted-2: #5e5950;
-  --line: rgba(17, 17, 15, 0.12);
+  --line: rgba(17, 17, 15, 0.14);
   --line-strong: rgba(17, 17, 15, 0.28);
   --white: #fffaf2;
-  --serif: "Fraunces", "Times New Roman", Georgia, serif;
-  --display: "Fraunces", "Times New Roman", Georgia, serif;
-  --body: "Host Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --display: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --body: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
   --side: clamp(24px, 5vw, 88px);
   --max: 1440px;
   --topbar-h: 56px;
@@ -87,11 +88,10 @@ button { font: inherit; color: inherit; }
 
 .topbar__brand {
   white-space: nowrap;
-  font-family: var(--serif);
-  font-size: 17px;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
   line-height: 1;
 }
 
@@ -149,13 +149,11 @@ button { font: inherit; color: inherit; }
 
 .cat-title {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(32px, 3.4vw, 52px);
   font-weight: 300;
-  font-style: italic;
   line-height: 1;
   letter-spacing: -0.025em;
-  font-variation-settings: "opsz" 144;
 }
 
 /* ─── Layout — full-width stack ─── */
@@ -226,13 +224,12 @@ button { font: inherit; color: inherit; }
 
 .cat-card__title {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(20px, 1.6vw, 26px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.015em;
   color: var(--ink);
-  font-variation-settings: "opsz" 144;
 }
 
 .cat-card__meta {
