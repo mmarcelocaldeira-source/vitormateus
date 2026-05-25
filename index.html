@@ -296,7 +296,7 @@
     .hero-title {
       max-width: 1140px;
       font-family: var(--serif);
-      font-size: clamp(42px, 6.4vw, 104px);
+      font-size: clamp(30px, 4.3vw, 70px);
       font-weight: 300;
       line-height: 0.96;
       letter-spacing: -0.03em;
@@ -331,7 +331,7 @@
     .hero-aside {
       display: grid;
       gap: 32px;
-      justify-items: start;
+      justify-items: end;
       padding-bottom: 12px;
     }
 
@@ -344,8 +344,8 @@
 
     .hero-controls {
       display: grid;
-      gap: 14px;
-      width: min(320px, 100%);
+      gap: 10px;
+      width: min(200px, 100%);
     }
 
     .progress-track {
@@ -364,7 +364,9 @@
     .hero-meta {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       color: rgba(255,250,242,.7);
     }
 
@@ -443,7 +445,7 @@
     }
 
     .intro-small {
-      max-width: 360px;
+      max-width: none;
       color: var(--muted-2);
       font-size: 15px;
       line-height: 1.65;
@@ -706,8 +708,8 @@
       grid-template-columns: 1.2fr .8fr;
       gap: clamp(42px, 9vw, 150px);
       padding: clamp(110px, 14vw, 200px) var(--side);
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--paper-soft);
+      color: var(--ink);
     }
 
     .about-num {
@@ -743,7 +745,7 @@
     }
 
     .about-text em {
-      color: rgba(244,241,235,.52);
+      color: var(--muted);
       font-style: italic;
     }
 
@@ -758,74 +760,49 @@
       grid-template-columns: 140px 1fr;
       gap: 24px;
       padding: 22px 0;
-      border-top: 1px solid rgba(244,241,235,.16);
+      border-top: 1px solid var(--line);
     }
 
-    .about-row:last-child { border-bottom: 1px solid rgba(244,241,235,.16); }
-    .about-row .meta { color: rgba(244,241,235,.45); }
+    .about-row:last-child { border-bottom: 1px solid var(--line); }
+    .about-row .meta { color: var(--muted); }
 
     .contact {
-      min-height: 88svh;
+      min-height: 72svh;
       display: grid;
-      place-items: center;
-      padding: clamp(100px, 14vw, 200px) var(--side);
-      text-align: center;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: clamp(40px, 7vw, 130px);
+      padding: clamp(110px, 14vw, 200px) var(--side);
+      background: var(--ink);
+      color: var(--paper);
       position: relative;
-    }
-
-    .contact-num {
-      position: absolute;
-      top: clamp(40px, 6vw, 80px);
-      left: var(--side);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .contact-num::after {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--line-strong);
-    }
-
-    .contact-box {
-      display: grid;
-      gap: clamp(28px, 4vw, 48px);
-      justify-items: center;
     }
 
     .contact-title {
       font-family: var(--serif);
-      font-size: clamp(60px, 12vw, 200px);
+      font-size: clamp(40px, 7vw, 92px);
       font-weight: 300;
-      line-height: 0.92;
-      letter-spacing: -0.045em;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
     }
 
-    .contact-title em { font-style: italic; color: var(--muted); font-weight: 300; }
+    .contact-title em { font-style: italic; color: rgba(244,241,235,0.55); font-weight: 300; }
 
-    .contact-email {
-      display: inline-flex;
-      min-height: 56px;
-      align-items: center;
-      padding: 0 32px;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      transition: background 280ms ease, color 280ms ease, padding 280ms ease;
-      font-size: 13px;
-      letter-spacing: 0.04em;
+    .contact-links {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      text-align: right;
     }
 
-    .contact-email:hover {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 0 38px;
+    .contact-link {
+      font-size: clamp(20px, 2.6vw, 36px);
+      letter-spacing: 0.01em;
+      color: rgba(244,241,235,0.72);
+      transition: color 220ms ease;
     }
+
+    .contact-link:hover { color: var(--paper); }
 
     footer {
       display: grid;
@@ -833,15 +810,16 @@
       gap: 24px;
       align-items: center;
       padding: 32px var(--side);
-      border-top: 1px solid var(--line);
-      color: var(--muted);
+      background: var(--ink);
+      border-top: 1px solid rgba(244,241,235,0.16);
+      color: rgba(244,241,235,0.55);
     }
 
     .footer-center {
       font-family: var(--serif);
       font-size: 13px;
       font-style: italic;
-      color: var(--muted-2);
+      color: rgba(244,241,235,0.7);
       text-align: center;
     }
 
@@ -910,16 +888,20 @@
       .hero-content,
       .intro,
       .project,
-      .about {
+      .about,
+      .contact {
         grid-template-columns: 1fr;
       }
+
+      .contact { align-items: start; gap: clamp(28px, 6vw, 48px); }
+      .contact-links { justify-items: start; text-align: left; }
 
       .hero-content {
         align-content: end;
         gap: 34px;
       }
 
-      .hero-aside { max-width: 420px; }
+      .hero-aside { max-width: 420px; justify-items: start; }
       .hero-links { display: none; }
       .works-head { grid-template-columns: 1fr; align-items: start; gap: 24px; padding: 40px 0 28px; }
       .works-headline { justify-self: start; text-align: left; }
@@ -931,7 +913,7 @@
     }
 
     @media (max-width: 680px) {
-      .hero-title { font-size: clamp(66px, 24vw, 132px); }
+      .hero-title { font-size: clamp(44px, 16vw, 88px); }
       .hero-title span { padding-left: .18em; }
       .intro { padding-top: 76px; }
       .shot,
@@ -974,8 +956,6 @@
       <a class="nav-link" href="autoriais.html">Autorais</a>
     </nav>
     <nav class="desktop-nav" aria-label="Navegação principal">
-      <a class="nav-link" href="#trabalhos">Trabalhos</a>
-      <a class="nav-link" href="#sobre">Estúdio</a>
       <a class="nav-link" href="#contato">Contato</a>
     </nav>
     <button class="menu-toggle" type="button" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
@@ -989,7 +969,6 @@
     <a href="gastronomia.html">Gastronomia</a>
     <a href="retratos.html">Retratos</a>
     <a href="autoriais.html">Autorais</a>
-    <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
 
@@ -1002,7 +981,7 @@
       </div>
       <div class="hero-content">
         <div class="hero-title-wrap">
-          <h1 class="hero-title">Direção visual<br /><em>com presença.</em></h1>
+          <h1 class="hero-title">Vitor Mateus</h1>
         </div>
         <div class="hero-aside">
           <div class="hero-controls" aria-hidden="true">
@@ -1017,13 +996,10 @@
     </section>
 
     <section class="intro reveal">
-      <div class="intro-aside">
-        <span class="intro-num">(01) — Estúdio</span>
-        <p class="section-kicker">Manifesto</p>
-      </div>
+      <div class="intro-aside" aria-hidden="true"></div>
       <div>
-        <p class="intro-text">Direção visual para marcas, espaços e pessoas. <em>Imagens precisas, edição contida, presença.</em></p>
-        <p class="intro-small">Quatro territórios, uma mesma linguagem: arquitetura, gastronomia, retratos e autorais. Cada categoria é um ensaio com ritmo próprio.</p>
+        <p class="intro-text">Fotografia e vídeo para arquitetura e gastronomia.</p>
+        <p class="intro-small">Capturo a essência dos espaços e sabores que contam histórias.</p>
       </div>
     </section>
 
@@ -1033,31 +1009,33 @@
 
     <section class="about" id="sobre">
       <div class="about-inner">
-        <span class="about-num">(03) — Estúdio</span>
-        <p class="about-text reveal">Vitor Mateus é fotógrafo e videomaker especializado em <em>arquitetura, gastronomia e narrativas visuais para marcas.</em></p>
+        <p class="about-text reveal">Serviços</p>
         <div class="about-list reveal">
           <div class="about-row">
-            <p class="meta">Especialidades</p>
-            <p>Fotografia de arquitetura<br />Fotografia de gastronomia<br />Vídeo corporativo e institucional</p>
+            <p class="meta">Fotografia</p>
+            <p>Fotografia de arquitetura, gastronomia, marcas e produtos.</p>
           </div>
           <div class="about-row">
-            <p class="meta">Localização</p>
-            <p>Brasil</p>
+            <p class="meta">Vídeo</p>
+            <p>Conteúdo audiovisual voltado para arquitetos, projetos, gastronomia, marcas e produtos.</p>
           </div>
           <div class="about-row">
-            <p class="meta">Contato</p>
-            <p><a href="mailto:contato@vitormateus.com">contato@vitormateus.com</a></p>
+            <p class="meta">Produção Fotográfica</p>
+            <p>Luz, cenário e composições para criar fotos que vendem mais.</p>
+          </div>
+          <div class="about-row">
+            <p class="meta">Direção de arte</p>
+            <p>Transformar ideias em conceitos visuais contando a história da sua marca e do seu projeto.</p>
           </div>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contato">
-      <span class="contact-num">(04) — Contato</span>
-      <div class="contact-box reveal">
-        <p class="contact-label">Vamos trabalhar juntos</p>
-        <h2 class="contact-title">Conte seu<br /><em>projeto.</em></h2>
-        <a class="contact-email" href="mailto:contato@vitormateus.com">contato@vitormateus.com</a>
+      <h2 class="contact-title reveal">Conte seu<br /><em>projeto.</em></h2>
+      <div class="contact-links reveal">
+        <a class="contact-link" href="tel:+5541991567456">+55 (41) 99156.7456</a>
+        <a class="contact-link" href="mailto:vitormateus.studio@gmail.com">vitormateus.studio@gmail.com</a>
       </div>
     </section>
   </main>

@@ -233,9 +233,8 @@
 
   document.title = `${project.title} — Vitor Mateus`;
 
-  const projectNav = category.projects.map(item => `
-    <a class="${item.slug === project.slug ? "is-current" : ""}" href="${projectHref(item)}" data-transition>${item.title}</a>
-  `).join("");
+  const projectIndex = Math.max(0, category.projects.findIndex(p => p.slug === project.slug));
+  const nextProject = category.projects[(projectIndex + 1) % category.projects.length];
 
   app.innerHTML = `
     <div class="page-transition"></div>
@@ -265,22 +264,20 @@
           <div><dt>Local</dt><dd>${project.location}</dd></div>
           <div><dt>Tipo</dt><dd>${project.type}</dd></div>
         </dl>
-
-        <div class="project-hero__cover">
-          <img src="${project.cover}" alt="${project.title}" />
-        </div>
       </section>
-
-      <div class="gallery-nav">
-        <span class="gallery-nav__label eyebrow">Galeria — ${project.gallery.length} imagens</span>
-        <nav aria-label="Outros projetos em ${category.label}">
-          ${projectNav}
-        </nav>
-      </div>
 
       <section class="gallery" aria-label="Galeria de ${project.title}">
         ${project.gallery.map(renderMedia).join("")}
       </section>
+
+      <a class="next-project" href="${projectHref(nextProject)}" data-transition aria-label="Próximo projeto: ${nextProject.title}">
+        <img class="next-project__bg" src="${nextProject.cover}" alt="" />
+        <div class="next-project__inner">
+          <p class="eyebrow">Próximo projeto</p>
+          <h2 class="next-project__title">${nextProject.title}</h2>
+          <span class="next-project__cue eyebrow">Ver projeto →</span>
+        </div>
+      </a>
     </main>
 
     <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Visualização ampliada">
