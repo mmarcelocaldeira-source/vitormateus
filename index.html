@@ -956,6 +956,7 @@
       <a class="nav-link" href="autoriais.html">Autorais</a>
     </nav>
     <nav class="desktop-nav" aria-label="Navegação principal">
+      <a class="nav-link" href="sobre.html">Sobre</a>
       <a class="nav-link" href="#contato">Contato</a>
     </nav>
     <button class="menu-toggle" type="button" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
@@ -969,6 +970,7 @@
     <a href="gastronomia.html">Gastronomia</a>
     <a href="retratos.html">Retratos</a>
     <a href="autoriais.html">Autorais</a>
+    <a href="sobre.html">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
 
@@ -976,7 +978,6 @@
     <section class="hero" aria-label="Apresentação">
       <div class="hero-stage" aria-hidden="true">
         <div class="hero-slide is-active" data-title="Arquitetura"><img src="assets/home/stairs-03.jpg" alt="" /></div>
-        <div class="hero-slide" data-title="Gastronomia"><img src="assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg" alt="" /></div>
         <div class="hero-slide" data-title="Retratos"><img src="assets/retratos/kenji/kenji-03.jpg" alt="" /></div>
       </div>
       <div class="hero-content">
@@ -1080,6 +1081,7 @@
       progress.style.width = `${Math.min(progressValue, 100)}%`;
       requestAnimationFrame(tickHero);
     }
+    setSlide(0);
     requestAnimationFrame(tickHero);
 
     const menu = document.getElementById("mobileMenu");
@@ -1171,15 +1173,6 @@
       { src: "assets/arquitetura/arq-05.jpg", title: "Escada Norte",    cat: "Arquitetura", loc: "Curitiba, BR",      href: "projeto.html?categoria=arquitetura&projeto=escada-norte" },
       { src: "assets/arquitetura/arq-07.jpg", title: "Pátio Monolito",  cat: "Arquitetura", loc: "Belo Horizonte, BR", href: "projeto.html?categoria=arquitetura&projeto=patio-monolito" },
       { src: "assets/arquitetura/arq-09.jpg", title: "Pátio Monolito",  cat: "Arquitetura", loc: "Belo Horizonte, BR", href: "projeto.html?categoria=arquitetura&projeto=patio-monolito" },
-      // Gastronomia
-      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
-      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-05.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
-      { src: "assets/gastronomia/cochicho-cafe/cochicho-cafe-10.jpg", title: "Cochicho Café",   cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=cochicho-cafe" },
-      { src: "assets/gastronomia/caprese/caprese-01.jpg",             title: "Caprese",         cat: "Gastronomia", loc: "Rio de Janeiro, BR", href: "projeto.html?categoria=gastronomia&projeto=caprese" },
-      { src: "assets/gastronomia/caprese/caprese-03.jpg",             title: "Caprese",         cat: "Gastronomia", loc: "Rio de Janeiro, BR", href: "projeto.html?categoria=gastronomia&projeto=caprese" },
-      { src: "assets/gastronomia/tagate/tagate-01.jpg",               title: "Tagate",          cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=tagate" },
-      { src: "assets/gastronomia/tagate/tagate-04.jpg",               title: "Tagate",          cat: "Gastronomia", loc: "São Paulo, BR",   href: "projeto.html?categoria=gastronomia&projeto=tagate" },
-      { src: "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg", title: "Pain au Chocolat", cat: "Gastronomia", loc: "Paris, FR", href: "projeto.html?categoria=gastronomia&projeto=pain-au-chocolat" },
       // Retratos
       { src: "assets/retratos/kenji/kenji-01.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-01" },
       { src: "assets/retratos/kenji/kenji-03.jpg", title: "Kenji",  cat: "Retratos", loc: "São Paulo, BR", href: "projeto.html?categoria=retratos&projeto=kenji-01" },
