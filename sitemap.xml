@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.vitormateus.studio/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.vitormateus.studio/assets/home/stairs-03.jpg</image:loc>
+      <image:caption>Fotografia de arquitetura por Vitor Mateus</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.vitormateus.studio/arquitetura.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.vitormateus.studio/assets/arquitetura/arq-01.jpg</image:loc>
+      <image:caption>Fotografia de arquitetura — Casa Linha</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.vitormateus.studio/gastronomia.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.vitormateus.studio/assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg</image:loc>
+      <image:caption>Fotografia de gastronomia — Cochicho Café</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.vitormateus.studio/retratos.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.vitormateus.studio/assets/retratos/kenji/kenji-01.jpg</image:loc>
+      <image:caption>Fotografia de retrato — Kenji</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.vitormateus.studio/autoriais.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.vitormateus.studio/assets/autorais/waves-01.jpg</image:loc>
+      <image:caption>Projetos autorais — Waves</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.vitormateus.studio/sobre.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

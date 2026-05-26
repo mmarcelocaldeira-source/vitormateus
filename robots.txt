@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_research/
+Disallow: /design-system/
+
+Sitemap: https://www.vitormateus.studio/sitemap.xml
