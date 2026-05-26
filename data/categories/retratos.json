@@ -1,0 +1,64 @@
+{
+  "label": "Retratos",
+  "path": "/retratos",
+  "title": "Retratos",
+  "subtitle": "projetos selecionados",
+  "intro": "Luz e presença no rosto humano. Cada série é curta, direta e pensada para ser vista com calma.",
+  "stats": ["3 séries", "capas selecionadas", "ficha técnica"],
+  "projects": [
+    {
+      "slug": "kenji-01",
+      "title": "Kenji I",
+      "client": "Pessoal",
+      "date": "2025",
+      "location": "São Paulo, BR",
+      "type": "estudo de rosto",
+      "note": "estudo de rosto",
+      "description": "Primeira sequência com leitura mais contida, fundo simples e foco na expressão.",
+      "cover": "assets/retratos/kenji/kenji-01.jpg",
+      "coverAlt": "Retrato de Kenji",
+      "gallery": [
+        "assets/retratos/kenji/kenji-01.jpg",
+        "assets/retratos/kenji/kenji-02.jpg",
+        "assets/retratos/kenji/kenji-03.jpg",
+        "assets/retratos/kenji/kenji-04.jpg"
+      ]
+    },
+    {
+      "slug": "kenji-02",
+      "title": "Kenji II",
+      "client": "Pessoal",
+      "date": "2025",
+      "location": "São Paulo, BR",
+      "type": "movimento",
+      "note": "movimento",
+      "description": "Mais gesto, mais deslocamento e uma aproximação editorial da figura.",
+      "cover": "assets/retratos/kenji/kenji-05.jpg",
+      "coverAlt": "Retrato em movimento",
+      "gallery": [
+        "assets/retratos/kenji/kenji-05.jpg",
+        "assets/retratos/kenji/kenji-06.jpg",
+        "assets/retratos/kenji/kenji-07.jpg",
+        "assets/retratos/kenji/kenji-08.jpg"
+      ]
+    },
+    {
+      "slug": "kenji-03",
+      "title": "Kenji III",
+      "client": "Pessoal",
+      "date": "2025",
+      "location": "São Paulo, BR",
+      "type": "fechamento",
+      "note": "fechamento",
+      "description": "Uma série de fechamento mais limpa e direta, com foco em textura e postura.",
+      "cover": "assets/retratos/kenji/kenji-09.jpg",
+      "coverAlt": "Retrato em composição minimalista",
+      "gallery": [
+        "assets/retratos/kenji/kenji-09.jpg",
+        "assets/retratos/kenji/kenji-10.jpg",
+        "assets/retratos/kenji/kenji-11.jpg",
+        "assets/retratos/kenji/kenji-12.jpg"
+      ]
+    }
+  ]
+}

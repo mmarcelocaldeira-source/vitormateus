@@ -1,0 +1,98 @@
+{
+  "label": "Gastronomia",
+  "path": "/gastronomia",
+  "title": "Gastronomia",
+  "subtitle": "projetos selecionados",
+  "intro": "Textura antes do sabor. A curadoria privilegia cor real, aproximação, contraste e uma cadência mais editorial.",
+  "stats": ["4 projetos", "capas selecionadas", "ficha técnica"],
+  "projects": [
+    {
+      "slug": "cochicho-cafe",
+      "title": "Cochicho Café",
+      "client": "Cochicho Café",
+      "date": "2025",
+      "location": "São Paulo, BR",
+      "type": "campanha",
+      "note": "campanha",
+      "description": "Série de campanha com close, vapor, crema e composição de bancada.",
+      "cover": "assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg",
+      "coverAlt": "Sobremesa em destaque",
+      "gallery": [
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-01.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-02.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-03.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-04.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-05.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-06.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-07.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-08.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-09.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-10.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-11.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-12.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-13.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-14.jpg",
+        "assets/gastronomia/cochicho-cafe/cochicho-cafe-15.jpg"
+      ]
+    },
+    {
+      "slug": "caprese",
+      "title": "Caprese",
+      "client": "Estúdio de Conteúdo",
+      "date": "2024",
+      "location": "Rio de Janeiro, BR",
+      "type": "food styling",
+      "note": "food styling",
+      "description": "Uma leitura mais gráfica e limpa da mesa, com cor e repetição de forma.",
+      "cover": "assets/gastronomia/caprese/caprese-01.jpg",
+      "coverAlt": "Prato caprese",
+      "gallery": [
+        "assets/gastronomia/caprese/caprese-01.jpg",
+        "assets/gastronomia/caprese/caprese-02.jpg",
+        "assets/gastronomia/caprese/caprese-03.jpg",
+        "assets/gastronomia/caprese/caprese-04.jpg",
+        "assets/gastronomia/caprese/caprese-05.jpg"
+      ]
+    },
+    {
+      "slug": "tagate",
+      "title": "Tagaté",
+      "client": "Tagaté",
+      "date": "2024",
+      "location": "São Paulo, BR",
+      "type": "menu visual",
+      "note": "menu visual",
+      "description": "Projeto mais amplo, com sequência de produto, mesa e leitura de marca.",
+      "cover": "assets/gastronomia/tagate/tagate-01.jpg",
+      "coverAlt": "Prato Tagaté",
+      "gallery": [
+        "assets/gastronomia/tagate/tagate-01.jpg",
+        "assets/gastronomia/tagate/tagate-02.jpg",
+        "assets/gastronomia/tagate/tagate-03.jpg",
+        "assets/gastronomia/tagate/tagate-04.jpg",
+        "assets/gastronomia/tagate/tagate-05.jpg",
+        "assets/gastronomia/tagate/tagate-06.jpg",
+        "assets/gastronomia/tagate/tagate-07.jpg",
+        "assets/gastronomia/tagate/tagate-08.jpg"
+      ]
+    },
+    {
+      "slug": "pain-au-chocolat",
+      "title": "Pain au Chocolat",
+      "client": "Bauducco",
+      "date": "2024",
+      "location": "São Paulo, BR",
+      "type": "produto",
+      "note": "produto",
+      "description": "Linha curta e elegante para um produto com foco em crocância, brilho e repetição.",
+      "cover": "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg",
+      "coverAlt": "Pain au chocolat em close",
+      "gallery": [
+        "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-01.jpg",
+        "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-02.jpg",
+        "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-03.jpg",
+        "assets/gastronomia/pain-au-chocolat/pain-au-chocolat-04.jpg"
+      ]
+    }
+  ]
+}

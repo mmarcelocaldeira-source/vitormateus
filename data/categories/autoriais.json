@@ -1,0 +1,100 @@
+{
+  "label": "Autorais",
+  "path": "/autoriais",
+  "title": "Autorais",
+  "subtitle": "projetos selecionados",
+  "intro": "Um espaço mais íntimo e autoral, organizado como portfólio de séries. Aqui a sequência importa tanto quanto cada frame.",
+  "stats": ["4 séries", "capas selecionadas", "ficha técnica"],
+  "projects": [
+    {
+      "slug": "waves",
+      "title": "Waves",
+      "client": "Série pessoal",
+      "date": "2024",
+      "location": "Brasil",
+      "type": "repetição",
+      "note": "repetição",
+      "description": "Exploração de forma e movimento com pouca informação e uma leitura quase abstrata.",
+      "cover": "assets/autorais/waves-01.jpg",
+      "coverAlt": "Projeto Waves",
+      "gallery": [
+        "assets/autorais/waves-01.jpg",
+        "assets/autorais/waves-02.jpg",
+        "assets/autorais/waves-03.jpg"
+      ]
+    },
+    {
+      "slug": "buenos-aires-2022",
+      "title": "Buenos Aires 2022",
+      "client": "Série pessoal",
+      "date": "2022",
+      "location": "Buenos Aires, AR",
+      "type": "cidade",
+      "note": "cidade",
+      "description": "Cenas urbanas com luz de rua, deslocamento e uma sensação documental mais aberta.",
+      "cover": "assets/autorais/buenos-aires-2022/buenos-aires-01.jpg",
+      "coverAlt": "Buenos Aires 2022",
+      "gallery": [
+        "assets/autorais/buenos-aires-2022/buenos-aires-01.jpg",
+        "assets/autorais/buenos-aires-2022/buenos-aires-02.jpg",
+        "assets/autorais/buenos-aires-2022/buenos-aires-03.jpg",
+        "assets/autorais/buenos-aires-2022/buenos-aires-04.jpg",
+        "assets/autorais/buenos-aires-2022/buenos-aires-05.jpg"
+      ]
+    },
+    {
+      "slug": "portra-160",
+      "title": "Portra 160",
+      "client": "Série pessoal",
+      "date": "2023",
+      "location": "Brasil",
+      "type": "filme",
+      "note": "filme",
+      "description": "Uma sequência mais suave, com clima de memória e granulação discreta.",
+      "cover": "assets/autorais/portra-160/portra160-01.jpg",
+      "coverAlt": "Portra 160",
+      "gallery": [
+        "assets/autorais/portra-160/portra160-01.jpg",
+        "assets/autorais/portra-160/portra160-02.jpg",
+        "assets/autorais/portra-160/portra160-03.jpg",
+        "assets/autorais/portra-160/portra160-04.jpg",
+        "assets/autorais/portra-160/portra160-05.jpg",
+        "assets/autorais/portra-160/portra160-06.jpg",
+        "assets/autorais/portra-160/portra160-07.jpg",
+        "assets/autorais/portra-160/portra160-08.jpg",
+        "assets/autorais/portra-160/portra160-09.jpg"
+      ]
+    },
+    {
+      "slug": "kodak-gold-200",
+      "title": "Kodak Gold 200",
+      "client": "Série pessoal",
+      "date": "2024",
+      "location": "Brasil",
+      "type": "cor",
+      "note": "cor",
+      "description": "Linguagem mais quente e solar, com foco em cor, recorte e atmosfera.",
+      "cover": "assets/autorais/kodak-gold-200/kodak-gold200-01.jpg",
+      "coverAlt": "Kodak Gold 200",
+      "gallery": [
+        "assets/autorais/kodak-gold-200/kodak-gold200-01.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-02.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-03.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-04.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-05.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-06.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-07.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-08.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-09.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-10.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-11.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-12.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-13.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-14.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-15.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-16.jpg",
+        "assets/autorais/kodak-gold-200/kodak-gold200-17.jpg"
+      ]
+    }
+  ]
+}
