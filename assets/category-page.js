@@ -19,6 +19,7 @@
     const renderNavLink = slug =>
       `<a class="topbar__link${categorySlug === slug ? " is-current" : ""}" href="${categoryHref(slug)}" data-transition>${navLabels[slug]}</a>`;
 
+    app.style.visibility = "visible";
     app.innerHTML = `
       <div class="page-transition"></div>
 

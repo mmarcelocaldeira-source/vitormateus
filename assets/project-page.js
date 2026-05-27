@@ -85,6 +85,7 @@
     const projectIndex = Math.max(0, category.projects.findIndex(p => p.slug === project.slug));
     const nextProject = category.projects[(projectIndex + 1) % category.projects.length];
 
+    app.style.visibility = "visible";
     app.innerHTML = `
       <div class="page-transition"></div>
 

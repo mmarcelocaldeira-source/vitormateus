@@ -81,7 +81,10 @@ export default {
         return renderPopupResponse("error", {
           message: "missing secrets",
           client_id_present: !!env.GITHUB_CLIENT_ID,
-          client_secret_present: !!env.GITHUB_CLIENT_SECRET
+          client_secret_present: !!env.GITHUB_CLIENT_SECRET,
+          client_id_length: env.GITHUB_CLIENT_ID ? env.GITHUB_CLIENT_ID.length : 0,
+          client_secret_length: env.GITHUB_CLIENT_SECRET ? env.GITHUB_CLIENT_SECRET.length : 0,
+          env_keys: Object.keys(env || {})
         });
       }
 

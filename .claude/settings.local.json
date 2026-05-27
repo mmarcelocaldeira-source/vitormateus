@@ -37,7 +37,11 @@
       "Bash(curl -sI \"https://api.fontshare.com/v2/css?f[]=switzer@200i,300i,400i,500i,200,300,400,500,600,700&display=swap\")",
       "Bash(curl -sI \"https://api.fontshare.com/v2/css?f[]=switzer@1,2,3,4,5,6,7,8,9&display=swap\")",
       "Bash(curl -sL \"https://api.fontshare.com/v2/css?f[]=switzer@1,2,3,4,5,6,7,8,9&display=swap\")",
-      "Bash(grep -v \":0$\")"
+      "Bash(grep -v \":0$\")",
+      "Bash(curl -s https://api.github.com/repos/mmarcelocaldeira-source/vitormateus/actions/runs?per_page=3)",
+      "Bash(curl -s https://api.github.com/repos/mmarcelocaldeira-source/vitormateus/actions/runs?per_page=1)",
+      "Bash(git commit -m 'fix\\(cms\\): keep oauth popup open for inspection, better error display *)",
+      "Bash(git push *)"
     ]
   }
 }
