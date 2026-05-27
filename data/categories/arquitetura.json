@@ -61,20 +61,6 @@
       "title": "Pátio Monolito",
       "type": "textura e massa",
       "description": "Blocos, cortes de sombra e materialidade em uma leitura mais gráfica da arquitetura."
-    },
-    {
-      "slug": "mareterra",
-      "title": "MAR E TERRA",
-      "client": "Maresia",
-      "date": "22/01/2026",
-      "location": "Sao Chico",
-      "description": "descricao",
-      "cover": "assets/DSC02660.jpg",
-      "gallery": [
-        "assets/DSC02641.jpg",
-        "assets/DSC02686.jpg",
-        "assets/DSC02660.jpg"
-      ]
     }
   ]
 }
