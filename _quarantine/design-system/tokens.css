@@ -1,0 +1,130 @@
+/* =============================================================================
+ # Design System Tokens — Vitor Mateus
+ # Adapted from Studio Ahremark (https://www.studioahremark.com)
+============================================================================= */
+
+:root {
+  /* ─── App height ─── */
+  --app-height: 100vh;
+
+  /* ─── Baseline grid (Ahremark uses 1rem rows for vertical rhythm) ─── */
+  --baseline-unit: 0.25rem;
+  --row-height: 1rem;
+  --row-1:  calc(var(--row-height) * 1);
+  --row-2:  calc(var(--row-height) * 2);
+  --row-3:  calc(var(--row-height) * 3);
+  --row-4:  calc(var(--row-height) * 4);
+  --row-5:  calc(var(--row-height) * 5);
+  --row-6:  calc(var(--row-height) * 6);
+  --row-7:  calc(var(--row-height) * 7);
+  --row-8:  calc(var(--row-height) * 8);
+  --row-10: calc(var(--row-height) * 10);
+  --row-12: calc(var(--row-height) * 12);
+  --row-16: calc(var(--row-height) * 16);
+  --row-20: calc(var(--row-height) * 20);
+
+  /* ─── Gaps (4-based scale: 1, 2, 4, 6, 8, 16, 32) ─── */
+  --gap-nano:   calc(var(--baseline-unit) * 1);   /* 4px  */
+  --gap-micro:  calc(var(--baseline-unit) * 2);   /* 8px  */
+  --gap-tiny:   calc(var(--baseline-unit) * 4);   /* 16px */
+  --gap-small:  calc(var(--baseline-unit) * 6);   /* 24px */
+  --gap:        calc(var(--baseline-unit) * 8);   /* 32px */
+  --gap-medium: calc(var(--baseline-unit) * 8);
+  --gap-large:  calc(var(--baseline-unit) * 16);  /* 64px */
+  --gap-huge:   calc(var(--baseline-unit) * 32);  /* 128px */
+
+  --gap-grid:      var(--row-height);   /* gutter */
+  --gap-container: var(--row-height);   /* page padding */
+  --gap-section:   var(--row-4);        /* between sections — 6 on tablet+ */
+
+  /* ─── Layout widths ─── */
+  --l-max-width-narrow: 720px;
+  --l-max-width-wide:   1440px;
+  --l-max-width-full:   none;
+
+  /* ─── Typography ─── */
+  /* Plus Jakarta Sans (Google) — variable 200-800 + italic. Humanist geometric sans. */
+  --font-heading: "Plus Jakarta Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  --font-body:    "Plus Jakarta Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+
+  /* Mobile sizes — Ahremark scale (rem-based) */
+  --font-size-tiny:   0.9rem;   /* body small / caption */
+  --font-size-small:  0.9rem;   /* body */
+  --font-size-medium: 1.75rem;  /* h4 */
+  --font-size-large:  3rem;     /* h3 */
+  --font-size-xlarge: 1.75rem;  /* h2 (mobile) */
+  --font-size-huge:   2.75rem;  /* h1 (mobile) */
+  --font-size-xhuge:  2.75rem;  /* h1 large lh */
+
+  /* Line-heights pinned to baseline */
+  --line-height-tiny:   1.15rem;
+  --line-height-small:  1.35rem;
+  --line-height-medium: 2rem;
+  --line-height-large:  3.15rem;
+  --line-height-xlarge: 2rem;
+  --line-height-huge:   2.75rem;
+  --line-height-xhuge:  2.75rem;
+
+  /* ─── Transitions (Ahremark exact cubic-bezier) ─── */
+  --transition-slow:        0.8s cubic-bezier(0.36, 0.64, 0.23, 0.94);
+  --transition:             0.4s cubic-bezier(0.36, 0.64, 0.23, 0.94);
+  --transition-quick:       0.1s ease-in-out;
+  --transition-curve-slow:  0.8s cubic-bezier(1, 0, 0.29, 1);
+  --transition-curve:       0.4s cubic-bezier(1, 0, 0.29, 1);
+  --transition-curve-quick: 0.1s cubic-bezier(1, 0, 0.29, 1);
+
+  --animation:       0.65s ease-in-out;
+  --animation-slow:  1s ease-in-out;
+  --animation-quick: 0.15s ease-in-out;
+
+  /* ─── Shadows ─── */
+  --drop-shadow-small: 0 10px 30px 0 rgba(0, 0, 0, 0.06);
+  --drop-shadow:       0 10px 40px 0 rgba(0, 0, 0, 0.15);
+  --drop-shadow-large: 0 10px 60px 0 rgba(0, 0, 0, 0.15);
+
+  /* ─── Radius — keep 0 for editorial flat look (per user direction) ─── */
+  --radius-small: 0;
+  --radius:       0;
+  --radius-large: 0;
+
+  /* ─── Header height ─── */
+  --site-header-height: calc(0.8rem + (var(--row-height) * 2));
+
+  /* ─── Colors (Vitor warm palette adapted from Ahremark structure) ─── */
+  --color-white:   #fffaf2;
+  --color-black:   #11110f;       /* ink */
+  --color-gray-1:  #f4f1eb;       /* paper (was #f6f6f6) */
+  --color-gray-2:  #e7e1d6;       /* paper-soft (was #e6e6e6) */
+  --color-gray-3:  #5e5950;       /* muted-2 (was #3f3f3f) */
+  --color-gray-4:  #1c1d1e;       /* dark surface */
+  --color-gray-5:  #8a857b;       /* muted */
+
+  --color-blur-background: hsla(35, 25%, 90%, 0.3);
+
+  /* Semantic */
+  --color-background: var(--color-gray-1);
+  --color-text:       var(--color-black);
+  --color-muted:      var(--color-gray-5);
+  --color-line:       rgba(17, 17, 15, 0.14);
+  --color-line-strong: rgba(17, 17, 15, 0.28);
+}
+
+/* ─── Responsive font-size tier (tablet+) ─── */
+@media (min-width: 768px) {
+  :root {
+    --gap-section:      var(--row-6);
+    --font-size-xlarge: 3.75rem;
+    --font-size-huge:   4.25rem;
+    --font-size-xhuge:  4.25rem;
+
+    --line-height-xlarge: 3.6rem;
+    --line-height-huge:   3.85rem;
+    --line-height-xhuge:  4.45rem;
+  }
+}
+
+/* ─── Dark surface inversion ─── */
+body[data-background-color="black"] {
+  --color-background: var(--color-gray-4);
+  --color-text:       var(--color-white);
+}

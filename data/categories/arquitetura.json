@@ -4,11 +4,7 @@
   "title": "Arquitetura",
   "subtitle": "projetos selecionados",
   "intro": "Espaços que narram a precisão do projeto. A leitura aqui é limpa, horizontal e focada em volume, textura e luz natural.",
-  "stats": [
-    "3 projetos",
-    "capas selecionadas",
-    "ficha técnica"
-  ],
+  "stats": ["3 projetos", "capas selecionadas", "ficha técnica"],
   "projects": [
     {
       "slug": "casa-linha",
