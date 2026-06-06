@@ -1,0 +1,34 @@
+{
+  "header_note": "Fotografia / Vídeo / Direção visual",
+  "hero_slides": [
+    { "src": "assets/home/stairs-03.jpg", "title": "Arquitetura" },
+    { "src": "assets/retratos/kenji/kenji-03.jpg", "title": "Retratos" }
+  ],
+  "intro": {
+    "primary": "Fotografia e vídeo para arquitetura, marcas e projetos autorais.",
+    "secondary": "Olhar autoral para espaços, gastronomia e histórias que merecem ser vistas."
+  },
+  "about": {
+    "title": "Serviços",
+    "items": [
+      { "label": "Fotografia", "text": "Fotografia de arquitetura, gastronomia, marcas e produtos." },
+      { "label": "Vídeo", "text": "Conteúdo audiovisual voltado para arquitetos, projetos, gastronomia, marcas e produtos." },
+      { "label": "Produção Fotográfica", "text": "Luz, cenário e composições para criar fotos que vendem mais." },
+      { "label": "Direção de arte", "text": "Transformar ideias em conceitos visuais contando a história da sua marca e do seu projeto." }
+    ]
+  },
+  "contact": {
+    "headline": "Conte seu<br /><em>projeto.</em>",
+    "phone": "+55 (41) 99156.7456",
+    "phone_href": "tel:+5541991567456",
+    "email": "vitormateus.studio@gmail.com"
+  },
+  "footer": {
+    "center": "Estúdio independente, Brasil.",
+    "social": {
+      "instagram": "https://instagram.com/vitormateus",
+      "behance": "https://behance.net/vitormateus",
+      "linkedin": "https://linkedin.com/in/vitormateus"
+    }
+  }
+}

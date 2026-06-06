@@ -74,26 +74,122 @@
 		const categories = [];
 		for (const f of files) {
 			if (f.type !== "file" || !f.name.endsWith(".json")) continue;
-			const raw = await getFile(`/contents/${f.path}`);
-			const text = decodeB64(raw.content);
-			let data;
-			try { data = JSON.parse(text); } catch {
-				data = { label: f.name };
-			}
-			data._path = f.path;
+			const data = await fetchFile("data/categories/" + f.name);
 			categories.push(data);
 		}
 		return categories;
 	}
 
+	async function saveFile(data, message) {
+		const out = {
+			message,
+			content: encodeB64(JSON.stringify((( { _path, _sha, ...rest } = data ) => rest)(data), null, 2)),
+			branch: "main"
+		};
+		if (data._sha) out.sha = data._sha;
+		console.log("[saveFile]", data._path, out);
+		await gh("/contents/" + encodeURIComponent(data._path), {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(out)
+		});
+	}
+
+	async function fetchFile(path) {
+		const raw = await getFile(path);
+		const text = decodeB64(raw.content);
+		let data;
+		try { data = JSON.parse(text); } catch { data = {}; }
+		data._path = raw.path;
+		data._sha = raw.sha;
+		return data;
+	}
+
 	async function saveCategory(data) {
-		const text = JSON.stringify(
-			(({ _path, ...rest }) => rest)(data),
-			null,
-			2
-		);
-		const b64 = encodeB64(text);
-		await putFile(data._path, b64, `update ${data._path} via admin`);
+		const { _sha, _path, ...rest } = data;
+		await saveFile({ ...rest, _path, _sha }, `update ${_path} via admin`);
+	}
+
+	async function openHomeModal() {
+		const home = await fetchFile("data/home.json").catch(() => ({ header_note: "", intro: {}, about: {}, contact: {}, footer: {} }));
+		if (!home._path) home._path = "data/home.json";
+		if (!home._sha) home._sha = "";
+
+		$("#modal-title").textContent = "Editar home";
+		$("#modal-body").innerHTML = `
+			<div class="form">
+				<div class="field">
+					<label>Header note</label>
+					<input data-field="header_note" value="${escapeAttr(home.header_note || "")}" />
+				</div>
+				<div class="field">
+					<label>Intro primária (aceita HTML básico)</label>
+					<textarea data-field="intro_primary" rows="3">${escapeHtml(home.intro?.primary || "")}</textarea>
+				</div>
+				<div class="field">
+					<label>Intro secundária</label>
+					<textarea data-field="intro_secondary" rows="2">${escapeHtml(home.intro?.secondary || "")}</textarea>
+				</div>
+				<div class="field">
+					<label>Título "Serviços"</label>
+					<input data-field="about_title" value="${escapeAttr(home.about?.title || "")}" />
+				</div>
+				<div class="field">
+					<label>Contato headline (aceita HTML básico)</label>
+					<textarea data-field="contact_headline" rows="2">${escapeHtml(home.contact?.headline || "")}</textarea>
+				</div>
+				<div class="row">
+					<div class="field">
+						<label>Telefone</label>
+						<input data-field="contact_phone" value="${escapeAttr(home.contact?.phone || "")}" />
+					</div>
+					<div class="field">
+						<label>E-mail</label>
+						<input data-field="contact_email" value="${escapeAttr(home.contact?.email || "")}" />
+					</div>
+				</div>
+				<div class="field">
+					<label>Rodapé frase</label>
+					<input data-field="footer_center" value="${escapeAttr(home.footer?.center || "")}" />
+				</div>
+			</div>
+		`;
+		$("#modal-cancel").onclick = closeModal;
+		$("#modal-close").onclick = closeModal;
+
+		await waitSave(async () => {
+			const p = formPayload($("#modal-body"));
+			const data = {
+				_path: home._path,
+				_sha: home._sha,
+				header_note: p.header_note || "",
+				intro: {
+					primary: p.intro_primary || "",
+					secondary: p.intro_secondary || ""
+				},
+				about: {
+					title: p.about_title || "",
+					items: home.about?.items || []
+				},
+				contact: {
+					headline: p.contact_headline || "",
+					phone: p.contact_phone || "",
+					phone_href: `tel:${(p.contact_phone || "").replace(/\D/g, "")}`,
+					email: p.contact_email || ""
+				},
+				footer: {
+					center: p.footer_center || "",
+					social: home.footer?.social || {}
+				}
+			};
+			setStatus("salvando home...");
+			try {
+				await saveFile(data, "update home via admin");
+				setStatus("home salva");
+			} catch (e) {
+				alert("Erro ao salvar home: " + e.message);
+			}
+		});
 	}
 
 	async function uploadImage(file, folder = "assets/uploads") {
@@ -127,9 +223,8 @@
 
 	function relativeToAdmin(p) {
 		if (!p) return "";
-		if (p.startsWith("assets/")) return "../" + p;
 		if (p.startsWith("http")) return p;
-		return "../" + p;
+		return `https://raw.githubusercontent.com/${state.owner}/${state.repo}/main/${p}`;
 	}
 
 	function setStatus(msg) {
@@ -279,9 +374,9 @@
 					<textarea data-field="description" rows="3">${escapeHtml(project.description || "")}</textarea>
 				</div>
 				<div class="field">
-					<label>Cover</label>
-					<input data-field="cover" value="${escapeAttr(project.cover || "")}" />
-					${project.cover ? `<img src="${relativeToAdmin(project.cover)}" style="max-width:160px; border-radius:10px; margin-top:8px" />` : ""}
+				  <label>Cover</label>
+				  <input data-field="cover" value="${escapeAttr(project.cover || "")}" />
+				  ${project.cover ? `<img data-preview-cover src="${relativeToAdmin(project.cover)}" style="max-width:160px; border-radius:6px; margin-top:8px; border:1px solid rgba(17,17,15,0.14)" />` : ""}
 				</div>
 				<div class="field">
 					<label>Upload de capa</label>
@@ -322,7 +417,7 @@
 		};
 		renderGallery();
 
-		const galleryInput = $(".drop input[type='file']:not([accept])", $("#modal-body"));
+		const galleryInput = $("input[type='file'][accept='image/*'][multiple]", $("#modal-body"));
 		if (galleryInput) {
 			galleryInput.addEventListener("change", async () => {
 				for (const f of galleryInput.files || []) {
@@ -331,6 +426,21 @@
 				}
 				renderGallery();
 				galleryInput.value = "";
+			});
+		}
+
+		const coverInput = $("input[type='file'][accept='image/*']:not([multiple])", $("#modal-body"));
+		if (coverInput) {
+			coverInput.addEventListener("change", async () => {
+				for (const f of coverInput.files || []) {
+					const path = await uploadImage(f, "assets/uploads");
+					project.cover = path;
+					const coverField = $("[data-field='cover']", $("#modal-body"));
+					if (coverField) coverField.value = path;
+					const img = $("[data-preview-cover]", $("#modal-body"));
+					if (img) { img.src = relativeToAdmin(path); img.style.display = "block"; }
+				}
+				coverInput.value = "";
 			});
 		}
 
@@ -351,8 +461,25 @@
 	}
 
 	async function renderDashboard() {
-		const box = $("#categories");
-		box.innerHTML = '<div class="card"><p class="hint">carregando...</p></div>';
+		const box = $("categories");
+		const addBtn = $("btn-add-cat");
+		if(addBtn) addBtn.style.display = "";
+		box.innerHTML = "";
+
+		const homeCard = document.createElement("button");
+		homeCard.className = "cat";
+		homeCard.innerHTML = `
+			<div class="cat__head">
+				<div>
+					<h3 class="cat__title">Home</h3>
+					<p class="cat__sub">index.html / data/home.json</p>
+				</div>
+				<button data-act="edit-home" class="btn btn-primary">Editar textos da home</button>
+			</div>
+		`;
+		homeCard.addEventListener("click", () => openHomeModal());
+		box.appendChild(homeCard);
+
 		let cats;
 		try {
 			cats = (await fetchCategories()).sort((a, b) =>

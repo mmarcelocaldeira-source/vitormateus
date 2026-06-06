@@ -1,12 +1,12 @@
 :root {
   --ink: #11110f;
-  --paper: #f4f1eb;
-  --paper-soft: #e7e1d6;
+  --paper: #ffffff;
+  --paper-soft: #f5f5f5;
   --muted: #8a857b;
   --muted-2: #5e5950;
-  --line: rgba(17, 17, 15, 0.14);
-  --line-strong: rgba(17, 17, 15, 0.28);
-  --white: #fffaf2;
+  --line: rgba(17, 17, 15, 0.12);
+  --line-strong: rgba(17, 17, 15, 0.24);
+  --white: #ffffff;
   --sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
   --serif: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
   --display: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
