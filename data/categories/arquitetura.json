@@ -61,23 +61,6 @@
       "title": "Pátio Monolito",
       "type": "textura e massa",
       "description": "Blocos, cortes de sombra e materialidade em uma leitura mais gráfica da arquitetura."
-    },
-    {
-      "slug": "novo-projeto-1780708028126",
-      "title": "Casa croche",
-      "client": "MC",
-      "date": "2026",
-      "location": "Curitiba",
-      "type": "",
-      "note": "",
-      "description": "uma casa com conceito retro moderno",
-      "cover": "assets/uploads/1780708061636-WhatsApp-Image-2026-05-04-at-23.23.12.jpeg",
-      "coverAlt": "",
-      "gallery": [
-        "assets/uploads/1780708070866-Centro-mesa-croche-mandala-colorida.jpg",
-        "assets/uploads/1780708072102-manta_de_croche_quadradinho_da_vovo_2135_1_406d72573b1b6186e1db4ef8541e4d9e.webp",
-        "assets/uploads/1780708073616-quadradinho.png"
-      ]
     }
   ]
 }
